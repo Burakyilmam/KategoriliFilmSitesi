@@ -1,0 +1,41 @@
+﻿.Categories {
+    border: 1px solid black;
+    font-size: 16px;
+}
+
+    .Categories .row {
+        padding-bottom: 15px;
+    }
+
+    .Categories a {
+        text-decoration: none;
+        color: black;
+    }
+
+.CategoryArea {
+    margin-top: 35px;
+}
+
+.Years {
+    border: 1px solid black;
+}
+
+    .Years .row {
+        padding-bottom: 15px;
+    }
+
+    .Years a {
+        text-decoration: none;
+        color: black;
+        padding: 10px 1px;
+    }
+
+@media screen and (max-width:950px) {
+    .Categories {
+        font-size: 12px;
+    }
+
+    .Years {
+        font-size: 12px;
+    }
+}

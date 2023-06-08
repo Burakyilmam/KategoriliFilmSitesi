@@ -1,0 +1,24 @@
+﻿.Filter {
+    width: 100%;
+}
+
+    .Filter ul {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        list-style-type: none;
+    }
+
+    .Filter a {
+        width: 20%;
+        text-align: center;
+        border: 1px solid white;
+        background-color: #FF8C00;
+        color: black;
+        text-decoration: none;
+    }
+
+        .Filter a :hover {
+            background-color: #FFA500;
+            color: white;
+        }
