@@ -1,0 +1,15 @@
+﻿@using CategoryMovieApp.Models
+@model IEnumerable<Movie>
+@{
+    ViewData["Title"] = "MoviePage";
+    Layout = "~/Views/Shared/_LayoutTR.cshtml";
+}
+
+@foreach(var item in Model)
+{
+    <img width="250" height="250" src="@item.MovieImageUrl">
+    @item.MovieId
+    @item.MovieNameTR
+    @item.MovieNameEN
+}
+

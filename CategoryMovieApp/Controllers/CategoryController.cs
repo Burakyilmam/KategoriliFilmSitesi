@@ -8,7 +8,7 @@ namespace CategoryMovieApp.Controllers
         CategoryRepository cr = new CategoryRepository();
         public IActionResult Index()
         {
-            return View();
+            return View(cr.List());
         }
     }
 }
