@@ -2,7 +2,7 @@
 
 namespace CategoryMovieApp.Repositories
 {
-    public class MovieRepository : GenericRepository<Movie>
+    public class UserRepository : GenericRepository<User>
     {
 
     }

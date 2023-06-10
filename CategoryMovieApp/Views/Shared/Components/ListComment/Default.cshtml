@@ -1,0 +1,10 @@
+﻿﻿@using CategoryMovieApp.Models
+@model IEnumerable<Comment>
+
+@foreach (var y in Model)
+{
+    <div style="width:100%;background-color:black">&nbsp;</div>
+    <div style="padding-left:10px;padding-top:5px;padding-bottom:5px;">@y.CommentDate.ToString("dd MMMM yyyy")</div>
+    <div style="padding-left:10px;padding-top:10px;">@y.User.UserName</div>
+    <div style="padding-left:10px;padding-top:10px;">@y.CommentText</div>
+}

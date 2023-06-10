@@ -8,8 +8,7 @@
 @foreach(var item in Model)
 {
     <img width="250" height="250" src="@item.MovieImageUrl">
-    @item.MovieId
-    @item.MovieNameTR
-    @item.MovieNameEN
 }
+<br />
+@await Component.InvokeAsync("ListComment",new {id=ViewBag.Id})
 

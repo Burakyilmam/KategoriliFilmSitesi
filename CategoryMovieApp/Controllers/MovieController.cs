@@ -21,7 +21,7 @@ namespace CategoryMovieApp.Controllers
         }
         public IActionResult MostComment(int page = 1)
         {
-            return View(mr.List().OrderByDescending(x => x.Comments.Count).ToPagedList(page, 10));
+            return View(mr.List().OrderByDescending(x=>x.Comments.Count()).ToPagedList(page, 5));
         }
         public ActionResult GetCategoryMovie(int id, int page = 1)
         {
@@ -37,7 +37,8 @@ namespace CategoryMovieApp.Controllers
         }
         public ActionResult MoviePage(int id)
         {
+            ViewBag.Id = id;
             return View(mr.List().Where(x => x.MovieId == id));
         }
-    }
+    }   
 }
