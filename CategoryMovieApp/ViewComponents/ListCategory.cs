@@ -9,7 +9,7 @@ namespace CategoryMovieApp.ViewComponents
         public IViewComponentResult Invoke()
         {
             CategoryRepository cr = new CategoryRepository();
-            var categorylist = cr.List();
+            var categorylist = cr.List().Where(x => x.CategoryStatu == true);
             return View(categorylist);
         }
     }

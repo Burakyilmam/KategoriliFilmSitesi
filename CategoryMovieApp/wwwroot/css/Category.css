@@ -1,0 +1,31 @@
+﻿
+.btn-warning, .btn-danger , .btn-success , .btn-primary {
+    border-radius: 5px;
+    padding: 4px 10px;
+}
+table th{
+    background-color:black;
+    color:white;
+}
+.cid, .cup, .cdel ,.cdet , .cst {
+    width: 8%;
+}
+@media screen and (max-width:534px){
+    table{
+        font-size:12px;
+    }
+}
+.inputName{
+    width: 75%;
+    padding :2px 0;
+    margin: 10px 0;
+}
+.addBtn{
+    width : 100%;
+    text-align:center;
+}
+.container-fluid form{
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+}

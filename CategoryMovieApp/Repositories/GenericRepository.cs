@@ -30,9 +30,9 @@ namespace CategoryMovieApp.Repositories
             c.Remove(item);
             c.SaveChanges() ;
         }
-        public void Get(int id) 
+        public T Get(int id) 
         {
-            c.Set<T>().Find(id);
+          return c.Set<T>().Find(id);
         }
     }
 }

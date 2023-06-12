@@ -1,0 +1,20 @@
+﻿@model CategoryMovieApp.Models.Category
+@{
+    ViewData["Title"] = "CategoryAdd";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2 class="text-center mt-3 mb-3">Kategori Ekleme Paneli</h2>
+    @using (Html.BeginForm("CategoryAdd", "Category", FormMethod.Post))
+    {
+        <input required type="text" class="inputName" name="CategoryNameTR" placeholder="Kategori Adını Türkçe Giriniz.">
+        <input required type="text" class="inputName" name="CategoryNameEN" placeholder="Kategori Adını İngilizce Giriniz.">
+        <input required type="text" style="display:none" name="CategoryStatu" value="True">
+        <br />
+        <div class="addBtn">
+            <button class="btn-success text-center"><i class="fa fa-plus"></i></button>
+        </div>
+    }
+</div>
+

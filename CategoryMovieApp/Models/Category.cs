@@ -8,6 +8,7 @@ namespace CategoryMovieApp.Models
         public int CategoryId { get; set; }
         public string CategoryNameTR { get; set; }
         public string CategoryNameEN { get; set; }
+        public bool CategoryStatu { get; set; }
         public List<Movie> Movies { get; set; }
     }
 }

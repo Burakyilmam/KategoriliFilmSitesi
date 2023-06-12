@@ -9,6 +9,7 @@ namespace CategoryMovieApp.Models
         public string CommentText { get; set; }
         public DateTime CommentDate { get; set; }
         public int CommentLike { get; set; }
+        public bool CommentStatu { get; set; }
         public int MovieId { get; set; }
         public virtual Movie Movie { get; set; }
         public int UserId { get; set; }
