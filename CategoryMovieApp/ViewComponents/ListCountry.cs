@@ -8,7 +8,7 @@ namespace CategoryMovieApp.ViewComponents
         public IViewComponentResult Invoke()
         {
             CountryRepository cr = new CountryRepository();
-            var countrylist = cr.List();
+            var countrylist = cr.List().Where(x => x.CountryStatu == true).OrderBy(x => x.CountryName); ;
             return View(countrylist);
         }
     }

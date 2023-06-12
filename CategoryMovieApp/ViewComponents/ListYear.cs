@@ -8,7 +8,7 @@ namespace CategoryMovieApp.ViewComponents
         public IViewComponentResult Invoke()
         {
             YearRepository yr = new YearRepository();
-            var yearlist = yr.List();
+            var yearlist = yr.List().Where(x => x.YearStatu == true).OrderByDescending(x => x.YearName);
             return View(yearlist);
         }
     }

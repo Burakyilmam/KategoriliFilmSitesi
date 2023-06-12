@@ -1,58 +1,13 @@
-﻿.Categories {
+﻿.Categories, .Years, .Country {
     border: 1px solid black;
     font-size: 16px;
 }
-
-    .Categories .row {
-        padding-bottom: 15px;
-    }
-
-    .Categories a {
-        text-decoration: none;
-        color: black;
-    }
-
-.CategoryArea {
-    margin-top: 35px;
+.Categories a, .Years a  , .Country a {
+    text-decoration: none;
+    color: black;
 }
-
-.Years {
-    border: 1px solid black;
-}
-
-    .Years .row {
-        padding-bottom: 15px;
-    }
-
-    .Years a {
-        text-decoration: none;
-        color: black;
-        padding: 10px 1px;
-    }
-.Country {
-    border: 1px solid black;
-    font-size: 16px;
-}
-
-    .Country .row {
-        padding-bottom: 15px;
-    }
-
-    .Country a {
-        text-decoration: none;
-        color: black;
-    }
-
-
 @media screen and (max-width:950px) {
-    .Categories {
-        font-size: 12px;
-    }
-
-    .Years {
-        font-size: 12px;
-    }
-    .Country{
+    .Categories, .Years, .Country {
         font-size: 12px;
     }
 }

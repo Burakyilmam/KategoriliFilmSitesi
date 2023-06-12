@@ -1,9 +1,9 @@
 ﻿@using CategoryMovieApp.Models
-@model List<Country>
+@model IEnumerable<Country>
 
-@foreach (var item in Model)
-{
-    <div class="row">
-        <div class="col-6"><a href="/Movie/GetCountryMovie/@item.CountryId">@item.CountryName</a></div>
-    </div>
-}
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-6 pt-2 pb-2"><a href="/Movie/GetCountryMovie/@item.CountryId">@item.CountryName</a></div>
+    }
+</div>
