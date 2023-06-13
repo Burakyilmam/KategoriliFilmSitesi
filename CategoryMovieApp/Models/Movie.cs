@@ -13,7 +13,7 @@ namespace CategoryMovieApp.Models
         public string MovieBadge { get; set; }
         public float MovieIMDB { get; set; }
         public DateTime MovieAddDate { get; set; }
-        public bool MovieStatu { get; set; }
+        public bool MovieStatu = true;
         public int CategoryId { get; set; }
         public List<Comment> Comments { get; set; }
         public virtual Category Category { get; set; }

@@ -2,6 +2,8 @@
 using CategoryMovieApp.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
+using System.Globalization;
+using System.Diagnostics.Metrics;
 
 namespace CategoryMovieApp.Controllers
 {
@@ -10,33 +12,37 @@ namespace CategoryMovieApp.Controllers
         MovieRepository mr = new MovieRepository();
 
         /// Bu Alan Kullanıcı Tarafı
-        public IActionResult MovieList(int page=1)
+        public IActionResult MovieList(string p , int page=1)
         {
+            if (!string.IsNullOrEmpty(p))
+            {
+                return View(mr.List().Where(x=>(x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page,12));
+            }
             return View(mr.List().Where(x => x.MovieAddDate <= DateTime.Now).ToPagedList(page,12));
         }
         public IActionResult NewAdded(int page = 1)
         {
-            return View(mr.List().OrderByDescending(x=>x.MovieAddDate).Where(x=>x.MovieAddDate <= DateTime.Now).ToPagedList(page, 10));
+            return View(mr.List().OrderByDescending(x=>x.MovieAddDate).Where(x=>x.MovieAddDate <= DateTime.Now).ToPagedList(page, 12));
         }
         public IActionResult IMDB7(int page = 1)
         {
-            return View(mr.List().OrderByDescending(x => x.MovieAddDate).Where(x => x.MovieIMDB >= 7).ToPagedList(page, 10));
+            return View(mr.List().OrderByDescending(x => x.MovieAddDate).Where(x => x.MovieIMDB >= 7).ToPagedList(page, 12));
         }
         public IActionResult MostComment(int page = 1)
         {
-            return View(mr.List().OrderByDescending(x=>x.Comments.Count()).ToPagedList(page, 5));
+            return View(mr.MostComment().ToPagedList(page, 12));
         }
         public ActionResult GetCategoryMovie(int id, int page = 1)
         {
-            return View(mr.List().OrderByDescending(x => x.MovieAddDate).Where(x => x.CategoryId == id).ToPagedList(page,10));
+            return View(mr.List().OrderByDescending(x => x.MovieAddDate).Where(x => x.CategoryId == id).ToPagedList(page, 12));
         }
         public ActionResult GetCountryMovie(int id, int page = 1)
         {
-            return View(mr.List().OrderByDescending(x => x.MovieAddDate).Where(x => x.CountryId == id).ToPagedList(page, 10));
+            return View(mr.List().OrderByDescending(x => x.MovieAddDate).Where(x => x.CountryId == id).ToPagedList(page, 12));
         }
         public ActionResult GetYearMovie(int id, int page = 1)
         {
-            return View(mr.List().OrderByDescending(x => x.MovieAddDate).Where(x => x.YearId == id).ToPagedList(page, 10));
+            return View(mr.List().OrderByDescending(x => x.MovieAddDate).Where(x => x.YearId == id).ToPagedList(page, 12));
         }
         public ActionResult MoviePage(int id)
         {
@@ -46,18 +52,19 @@ namespace CategoryMovieApp.Controllers
 
         /// Bu Alan Admin Tarafı
 
-        public IActionResult MovieAdminList()
+        public IActionResult MovieAdminList(int page = 1)
         {
-            return View(mr.List());
+            return View(mr.List("Category","Year","Country").ToPagedList(page,10));
         }
         [HttpGet]
         public IActionResult MovieAdd()
-        {
+        { 
             return View();
         }
         [HttpPost]
         public IActionResult MovieAdd(Movie m)
         {
+            m.MovieAddDate = DateTime.Today;
             mr.Add(m);
             return RedirectToAction("MovieAdminList");
         }

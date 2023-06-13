@@ -1,0 +1,9 @@
+﻿@using CategoryMovieApp.Models
+@model IEnumerable<Year>
+
+<select class="inputName" name="YearId">
+    @foreach (var item in Model)
+    {
+        <option value="@item.YearId">@item.YearId - @item.YearName</option>
+    }
+</select>

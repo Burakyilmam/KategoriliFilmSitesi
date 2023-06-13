@@ -1,15 +1,16 @@
 ﻿using CategoryMovieApp.Models;
 using CategoryMovieApp.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace CategoryMovieApp.Controllers
 {
     public class CategoryController : Controller
     {
         CategoryRepository cr = new CategoryRepository();
-        public IActionResult CategoryList()
+        public IActionResult CategoryList(int page = 1)
         {
-            return View(cr.List());
+            return View(cr.List().ToPagedList(page,10));
         }
         [HttpGet]
         public IActionResult CategoryAdd()

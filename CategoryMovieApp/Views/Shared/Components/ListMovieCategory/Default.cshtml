@@ -1,0 +1,9 @@
+﻿@using CategoryMovieApp.Models
+@model IEnumerable<Category>
+
+<select class="inputName" name="CategoryId">
+    @foreach (var item in Model)
+    {
+        <option value="@item.CategoryId">@item.CategoryId - @item.CategoryNameTR</option>
+    }
+</select>

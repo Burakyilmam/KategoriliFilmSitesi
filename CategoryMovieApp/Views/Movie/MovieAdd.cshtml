@@ -1,0 +1,31 @@
+﻿@model CategoryMovieApp.Models.Movie
+@{
+    ViewData["Title"] = "MovieAdd";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2 class="text-center mt-3 mb-3">Film Ekleme Paneli</h2>
+    @using (Html.BeginForm("MovieAdd", "Movie", FormMethod.Post))
+    {
+        <input required type="text" class="inputName" name="MovieNameTR" placeholder="Filmin Adını Türkçe Giriniz.">
+        <input required type="text" class="inputName" name="MovieNameEN" placeholder="Filmin Adını İngilizce Giriniz.">
+        <input required type="text" class="inputName" name="MovieDescription" placeholder="Filmin Açıklmasını Giriniz.">
+        <input required type="text" class="inputName" name="MovieIMDB" placeholder="Filmin IMDB Puanını Giriniz.">
+        <input required type="text" class="inputName" name="MovieImageUrl" placeholder="Filmin Resim Url'sini Giriniz.">
+        <select class="inputName" name="MovieBadge">
+            <option>Türkçe Altyazı / Türkçe Dublaj</option>
+            <option>Türkçe Dublaj</option>
+            <option>Türkçe Altyazı</option>
+            <option>Orjinal Dil</option>
+        </select>
+        @await Component.InvokeAsync("ListMovieCategory")
+        @await Component.InvokeAsync("ListMovieYear")
+        @await Component.InvokeAsync("ListMovieCountry")
+        <br />
+        <div class="addBtn">
+            <button class="btn-success text-center"><i class="fa fa-plus"></i></button>
+        </div>
+    }
+</div>
+

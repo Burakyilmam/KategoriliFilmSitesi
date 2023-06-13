@@ -2,18 +2,18 @@
 @using X.PagedList.Mvc.Bootstrap4.Core;
 @using X.PagedList;
 @using X.PagedList.Mvc.Core;
-@model PagedList<Category>
+@model PagedList<User>
 @{
-    ViewData["Title"] = "CategoryList";
+    ViewData["Title"] = "UserList";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
 <div class="container-fluid">
-    <h2 class="text-center mt-3 mb-3">Kategori Bilgileri</h2>
+    <h2 class="text-center mt-3 mb-3">Kullanıcı Bilgileri</h2>
     <table class="table table-hover table-striped table-bordered text-center">
         <tr>
             <th class="cid">Id</th>
-            <th class="ctr">Ad</th>
-            <th class="cen">Name</th>
+            <th class="ctr">Kullanıcı Ad</th>
+            <th class="cen">Parola</th>
             <th class="cst">Statü</th>
             <th class="cup">Güncelle</th>
             <th class="cdet">Detay</th>
@@ -23,26 +23,26 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.CategoryId</td>
-                <td>@item.CategoryNameTR</td>
-                <td>@item.CategoryNameEN</td>
+                <td>@item.UserId</td>
+                <td>@item.UserName</td>
+                <td>@item.UserPassword</td>
                 <td>
-                    <a id="statu" class="@item.CategoryStatu">
-                        @item.CategoryStatu
+                    <a id="statu" class="@item.UserStatu">
+                        @item.UserStatu
                     </a>
                 </td>
                 <td>
-                    <a class="btn-warning text-white" href="/Category/CategoryUpdate/@item.CategoryId">
+                    <a class="btn-warning text-white" href="/User/UserUpdate/@item.UserId">
                         <i class="fa fa-refresh"></i>
                     </a>
                 </td>
                 <td>
-                    <a class="btn-danger" href="/Category/CategoryInfo/@item.CategoryId">
+                    <a class="btn-danger" href="/User/UserInfo/@item.UserId">
                         <i class="fa fa-info"></i>
                     </a>
                 </td>
                 <td>
-                    <a class="btn-primary" href="/Category/CategoryDelete/@item.CategoryId">
+                    <a class="btn-primary" href="/User/UserDelete/@item.UserId">
                         <i class="fa fa-trash"></i>
                     </a>
                 </td>
@@ -50,11 +50,6 @@
         }
     </table>
     <div class="row justify-content-center">
-        @Html.PagedListPager((IPagedList)Model,page=>Url.Action("CategoryList",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
-    </div>
-    <div class="text-center">
-        <a class="btn-success" href="/Category/CategoryAdd/">
-            <i class="fa fa-plus"></i>
-        </a>
+        @Html.PagedListPager((IPagedList)Model,page=>Url.Action("UserList",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
     </div>
 </div>
