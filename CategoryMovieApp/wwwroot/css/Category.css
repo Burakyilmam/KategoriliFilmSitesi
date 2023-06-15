@@ -15,14 +15,14 @@ table th{
         font-size:12px;
     }
 }
-.inputName{
+.inputName {
     width: 75%;
-    padding :2px 0;
+    padding: 2px 0;
     margin: 10px 0;
 }
-.addBtn{
-    width : 100%;
-    text-align:center;
+.addBtn {
+    width: 100%;
+    text-align: center;
 }
 .container-fluid form{
     display: flex;

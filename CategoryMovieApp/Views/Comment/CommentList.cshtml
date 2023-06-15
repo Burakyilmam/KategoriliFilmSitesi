@@ -28,7 +28,7 @@
             <tr>
                 <td>@item.CommentId</td>
                 <td>@item.CommentText</td>
-                <td>@item.CommentDate</td>
+                <td>@item.CommentDate.ToString("dd MMMM yyyy")</td>
                 <td>@item.CommentLike</td>
                 <td>@item.Movie.MovieNameTR</td>
                 <td>@item.User.UserName</td>
@@ -38,12 +38,12 @@
                     </a>
                 </td>
                 <td>
-                    <a class="btn-warning text-white" href="/Comment/CommentUpdate/@item.CommentId">
+                    <a class="btn-warning text-white" href="/Comment/GetComment/@item.CommentId">
                         <i class="fa fa-refresh"></i>
                     </a>
                 </td>
                 <td>
-                    <a class="btn-danger" href="/Comment/CommentInfo/@item.CommentId">
+                    <a class="btn-danger" href="/Comment/GetComment/@item.CommentId">
                         <i class="fa fa-info"></i>
                     </a>
                 </td>

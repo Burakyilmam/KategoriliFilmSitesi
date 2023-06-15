@@ -25,8 +25,13 @@ namespace CategoryMovieApp.Controllers
         }
         public IActionResult CategoryUpdate(Category c)
         {
-            cr.Update(c);
-            return View();
+            var category = cr.Get(c.CategoryId);
+            category.CategoryNameTR = c.CategoryNameTR;
+            category.CategoryNameEN = c.CategoryNameEN;
+            category.CategoryStatu = c.CategoryStatu;
+            category.CategoryId = c.CategoryId;
+            cr.Update(category);
+            return RedirectToAction("CategoryList");
         }
         public IActionResult CategoryDelete(int id)
         {
@@ -36,7 +41,14 @@ namespace CategoryMovieApp.Controllers
         public IActionResult GetCategory(int id)
         {
             var category = cr.Get(id);
-            return View(category);
+            Category c = new Category()
+            {
+                CategoryId = category.CategoryId,
+                CategoryNameTR = category.CategoryNameTR,
+                CategoryNameEN = category.CategoryNameEN,
+                CategoryStatu = category.CategoryStatu
+            };
+            return View(c);
         }
     }
 }

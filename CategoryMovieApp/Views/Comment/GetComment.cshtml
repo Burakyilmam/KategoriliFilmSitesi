@@ -1,0 +1,25 @@
+﻿@using CategoryMovieApp.Models
+@model CategoryMovieApp.Models.Comment
+@{
+    ViewData["Title"] = "GetComment";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2 class="text-center mt-3 mb-3">Kategori Ekleme Paneli</h2>
+    @using (Html.BeginForm("CommentUpdate", "Comment", FormMethod.Post))
+    {
+        @Html.TextBoxFor(x=>x.CommentId,new {@style="display:none;",@class="inputName"})
+        @Html.TextBoxFor(x=>x.CommentText,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.CommentDate,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.CommentLike,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.CommentStatu,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.MovieId,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.UserId,new {@class="inputName"})
+        <br />
+        <div class="addBtn">
+            <button class="btn-success text-center"><i class="fa fa-plus"></i></button>
+        </div>
+    }
+</div>
+
