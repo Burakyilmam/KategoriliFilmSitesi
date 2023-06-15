@@ -11,15 +11,6 @@
         <input required type="text" class="inputName" name="CommentText" placeholder="Filmin Adını Türkçe Giriniz.">
         <input required type="text" class="inputName" name="CommentLike" placeholder="Filmin Adını İngilizce Giriniz.">
         <input required type="datetime" class="inputName" name="CommentDate" placeholder="Filmin Açıklmasını Giriniz.">
-        <select class="inputName" name="MovieBadge">
-            <option>Türkçe Altyazı / Türkçe Dublaj</option>
-            <option>Türkçe Dublaj</option>
-            <option>Türkçe Altyazı</option>
-            <option>Orjinal Dil</option>
-        </select>
-        @await Component.InvokeAsync("ListMovieCategory")
-        @await Component.InvokeAsync("ListMovieYear")
-        @await Component.InvokeAsync("ListMovieCountry")
         <br />
         <div class="addBtn">
             <button class="btn-success text-center"><i class="fa fa-plus"></i></button>
