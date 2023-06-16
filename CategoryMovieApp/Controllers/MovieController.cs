@@ -69,11 +69,10 @@ namespace CategoryMovieApp.Controllers
             }
             return View(mr.List().OrderByDescending(x => x.MovieAddDate).Where(x => x.YearId == id).ToPagedList(page, 12));
         }
-        public ActionResult MoviePage(int id , Movie m)
+        public ActionResult MoviePage(int id)
         {
             ViewBag.Id = id;
-            var movie = mr.List().Where(x => x.MovieId == id);
-            return View(movie);
+            return View(mr.List().Where(x => x.MovieId == id));
         }
         
         /// Bu Alan Admin Tarafı
