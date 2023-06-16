@@ -36,7 +36,6 @@ namespace CategoryMovieApp.Controllers
             comment.CommentId = c.CommentId;
             comment.CommentText = c.CommentText;
             comment.CommentDate = c.CommentDate;
-            comment.CommentLike = c.CommentLike;
             comment.CommentStatu = c.CommentStatu;
             comment.MovieId = c.MovieId;
             comment.UserId = c.UserId;
@@ -56,7 +55,6 @@ namespace CategoryMovieApp.Controllers
                 CommentId = comment.CommentId,
                 CommentText = comment.CommentText,
                 CommentDate = comment.CommentDate,
-                CommentLike = comment.CommentLike,
                 CommentStatu = comment.CommentStatu,
                 MovieId = comment.MovieId,
                 UserId = comment.UserId,
