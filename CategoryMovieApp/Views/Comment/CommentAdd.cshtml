@@ -1,20 +1,15 @@
-﻿@model CategoryMovieApp.Models.Movie
-@{
-    ViewData["Title"] = "CommentAdd";
-    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
-}
+﻿@using CategoryMovieApp.Models
+@model IEnumerable<Comment>
 
 <div class="container-fluid">
-    <h2 class="text-center mt-3 mb-3">Film Ekleme Paneli</h2>
+    <h2 class="text-center mt-3 mb-3">Kategori Ekleme Paneli</h2>
     @using (Html.BeginForm("CommentAdd", "Comment", FormMethod.Post))
     {
-        <input required type="text" class="inputName" name="CommentText" placeholder="Filmin Adını Türkçe Giriniz.">
-        <input required type="text" class="inputName" name="CommentLike" placeholder="Filmin Adını İngilizce Giriniz.">
-        <input required type="datetime" class="inputName" name="CommentDate" placeholder="Filmin Açıklmasını Giriniz.">
+        <textarea name="CommentText"></textarea>
+        <input required type="text" style="display:none" name="MovieId" value="@ViewBag.Id">
         <br />
-        <div class="addBtn">
-            <button class="btn-success text-center"><i class="fa fa-plus"></i></button>
-        </div>
+        <br />
+        <button class="btn-success text-center">Ekle</button>
     }
 </div>
 

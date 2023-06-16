@@ -14,6 +14,22 @@ namespace CategoryMovieApp.Controllers
         {
             return View(cr.List("Movie","User").Where(x => x.CommentDate <= DateTime.Now).OrderBy(x=>x.MovieId).ToPagedList(page, 12));
         }
+        [HttpGet]
+        public PartialViewResult CommentAdd(int id)
+        {
+            ViewBag.Id = id;
+            return PartialView();
+        }
+        [HttpPost]
+        public IActionResult CommentAdd(Comment c)
+        {
+            c.CommentDate = DateTime.Today;
+            c.CommentStatu = true;
+            c.UserId = 2;
+            cr.Add(c);
+            return RedirectToAction("MoviePage", "Movie", new { @id = c.MovieId });
+
+        }
         public IActionResult CommentUpdate(Comment c)
         {
             var comment = cr.Get(c.CommentId);

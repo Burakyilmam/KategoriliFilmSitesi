@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 using System.Globalization;
 using System.Diagnostics.Metrics;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CategoryMovieApp.Controllers
 {
@@ -20,28 +21,52 @@ namespace CategoryMovieApp.Controllers
             }
             return View(mr.List().Where(x => x.MovieAddDate <= DateTime.Now).ToPagedList(page,12));
         }
-        public IActionResult NewAdded(int page = 1)
+        public IActionResult NewAdded(string p , int page = 1)
         {
+            if (!string.IsNullOrEmpty(p))
+            {
+                return View(mr.List().Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
+            }
             return View(mr.List().OrderByDescending(x=>x.MovieAddDate).Where(x=>x.MovieAddDate <= DateTime.Now).ToPagedList(page, 12));
         }
-        public IActionResult IMDB7(int page = 1)
+        public IActionResult IMDB7(string p, int page = 1)
         {
+            if (!string.IsNullOrEmpty(p))
+            {
+                return View(mr.List().Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
+            }
             return View(mr.List().OrderByDescending(x => x.MovieAddDate).Where(x => x.MovieIMDB >= 7).ToPagedList(page, 12));
         }
-        public IActionResult MostComment(int page = 1)
+        public IActionResult MostComment(string p, int page = 1)
         {
+            if (!string.IsNullOrEmpty(p))
+            {
+                return View(mr.List().Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
+            }
             return View(mr.MostComment().ToPagedList(page, 12));
         }
-        public ActionResult GetCategoryMovie(int id, int page = 1)
+        public ActionResult GetCategoryMovie(string p ,int id, int page = 1)
         {
+            if (!string.IsNullOrEmpty(p))
+            {
+                return View(mr.List().Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
+            }
             return View(mr.List().OrderByDescending(x => x.MovieAddDate).Where(x => x.CategoryId == id).ToPagedList(page, 12));
         }
-        public ActionResult GetCountryMovie(int id, int page = 1)
+        public ActionResult GetCountryMovie(string p, int id, int page = 1)
         {
+            if (!string.IsNullOrEmpty(p))
+            {
+                return View(mr.List().Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
+            }
             return View(mr.List().OrderByDescending(x => x.MovieAddDate).Where(x => x.CountryId == id).ToPagedList(page, 12));
         }
-        public ActionResult GetYearMovie(int id, int page = 1)
+        public ActionResult GetYearMovie(string p, int id, int page = 1)
         {
+            if (!string.IsNullOrEmpty(p))
+            {
+                return View(mr.List().Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
+            }
             return View(mr.List().OrderByDescending(x => x.MovieAddDate).Where(x => x.YearId == id).ToPagedList(page, 12));
         }
         public ActionResult MoviePage(int id)
@@ -49,7 +74,6 @@ namespace CategoryMovieApp.Controllers
             ViewBag.Id = id;
             return View(mr.List().Where(x => x.MovieId == id));
         }
-
         /// Bu Alan Admin Tarafı
 
         public IActionResult MovieAdminList(int page = 1)
