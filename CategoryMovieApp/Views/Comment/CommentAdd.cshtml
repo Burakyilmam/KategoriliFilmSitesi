@@ -1,15 +1,7 @@
-﻿@using CategoryMovieApp.Models
-@model IEnumerable<Comment>
-
-<div class="container-fluid">
-    <h2 class="text-center mt-3 mb-3">Kategori Ekleme Paneli</h2>
-    @using (Html.BeginForm("CommentAdd", "Comment", FormMethod.Post))
-    {
-        <textarea name="CommentText"></textarea>
-        <input required type="text" style="display:none" name="MovieId" value="@ViewBag.Id">
-        <br />
-        <br />
-        <button class="btn-success text-center">Ekle</button>
-    }
+﻿<div class="container-fluid">
+    <form action="/Comment/CommentAdd/" method="post">
+        <input type="text" name="MovieId" style="display:none" value="@ViewBag.Id" />
+        <textarea style="width:100%;height:150px;" required name="CommentText"></textarea>
+        <input class="text-center btn-success" type="submit" value="Ekle" />
+    </form>
 </div>
-

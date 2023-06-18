@@ -11,9 +11,14 @@
     @item.MovieId
 }
 @await Component.InvokeAsync("ListComment",new {id=ViewBag.Id})
-<div class="text-center">
+<br />
+@await Html.PartialAsync("~/Views/Comment/CommentAdd.cshtml")
+
+<!--
+    <div class="text-center">
     <a class="btn-success" href="/Comment/CommentAdd/@ViewBag.Id">
         <i class="fa fa-plus"></i>
     </a>
 </div>
+-->
 
