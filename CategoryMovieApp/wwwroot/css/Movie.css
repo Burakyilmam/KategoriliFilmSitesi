@@ -1,8 +1,10 @@
 ﻿.Movies img {
     padding: 10px 1px;
     width: 100%;
-    height:400px;
+    height: 400px;
+    opacity: 0.9;
 }
+
 .MovieArea a {
     text-decoration: none;
     color: white;
@@ -12,3 +14,5 @@
 .MovieArea {
     margin-top: -10px;
 }
+
+

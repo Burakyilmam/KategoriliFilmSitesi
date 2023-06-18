@@ -5,6 +5,7 @@ using X.PagedList;
 using System.Globalization;
 using System.Diagnostics.Metrics;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Xml.Linq;
 
 namespace CategoryMovieApp.Controllers
 {
@@ -19,7 +20,7 @@ namespace CategoryMovieApp.Controllers
             {
                 return View(mr.List().Where(x=>(x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page,12));
             }
-            return View(mr.List().Where(x => x.MovieAddDate <= DateTime.Now).ToPagedList(page,12));
+            return View(mr.List("Year","Category").Where(x => x.MovieAddDate <= DateTime.Now).ToPagedList(page,12));
         }
         public IActionResult NewAdded(string p , int page = 1)
         {

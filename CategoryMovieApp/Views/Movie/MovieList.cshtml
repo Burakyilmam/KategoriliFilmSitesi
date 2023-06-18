@@ -7,6 +7,7 @@
     ViewData["Title"] = "MovieList";
     Layout = "~/Views/Shared/_LayoutTR.cshtml";
 }
+<link href="~/css/badge.css" rel="stylesheet" />
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm Movies">
@@ -34,10 +35,18 @@
             <div class="row MovieArea">
                 @foreach(var item in Model)
                 {
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <a href="/Movie/MoviePage/@item.MovieId"><img src="@item.MovieImageUrl" alt=""></a>
+                    <div class="col-sm-6 col-md-4 col-lg-3 item">
+                        <a href="/Movie/MoviePage/@item.MovieId">
+                            <span class="BadgeIMDB">@item.MovieIMDB</span>
+                            <span class="BadgeLanguage @item.MovieBadge">@item.MovieBadge</span>
+                            <img src="@item.MovieImageUrl" alt="">
+                        </a>
+                        <div class="row Info">
+                            <div class="col-6 Year">@item.Year.YearName</div>
+                            <div class="col-6 Category">@item.Category.CategoryNameTR</div>
+                            <div class="col-12 Text">@item.MovieNameTR</div>
+                        </div>
                     </div>
-
                 }
             </div>
             <div class="row justify-content-center">
