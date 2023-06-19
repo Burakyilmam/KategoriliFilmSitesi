@@ -1,4 +1,5 @@
 ﻿@using X.PagedList
+@using X.PagedList.Mvc.Bootstrap4.Core;
 @using X.PagedList.Mvc.Core
 @using CategoryMovieApp.Models
 @model IPagedList<Movie>
@@ -6,7 +7,7 @@
     ViewData["Title"] = "MovieList";
     Layout = "~/Views/Shared/_LayoutTR.cshtml";
 }
-
+<link href="~/css/badge.css" rel="stylesheet" />
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm Movies">
@@ -16,13 +17,13 @@
                         <a href="/Movie/NewAdded">
                         <li>Yeni Eklenenler</li>
                         </a>
-                        <a href="">
+                        <a href="/Movie/MostLike">
                         <li>Çok Beğenilen</li>
                         </a>
                         <a href="/Movie/MostComment">
                         <li>Çok Yorumlanan</li>
                         </a>
-                        <a href="">
+                        <a href="/Movie/MostView">
                         <li>Çok İzlenen</li>
                         </a>
                         <a href="/Movie/IMDB7">
@@ -34,28 +35,35 @@
             <div class="row MovieArea">
                 @foreach (var item in Model)
                 {
-                    <div class="col-sm-6 col-md-4 col-lg-3 MovieCard">
-                        <a href="MoviePage.html"><img src="@item.MovieImageUrl" alt=""></a>
-                        <a class="MovieName" href="">@item.MovieNameTR</a>
+                    <div class="col-sm-6 col-md-4 col-lg-3 item">
+                        <a href="/Movie/MoviePage/@item.MovieId">
+                            <span class="BadgeIMDB">@item.MovieIMDB</span>
+                            <span class="BadgeLanguage @item.MovieBadgeTR">@item.MovieBadgeTR</span>
+                            <img src="@item.MovieImageUrl" alt="">
+                        </a>
+                        <div class="row Info">
+                            <div class="col-6 Year">@item.Year.YearName</div>
+                            <div class="col-12 Text">@item.MovieNameTR</div>
+                        </div>
                     </div>
                 }
             </div>
-            <div class="row text-center Page">
-                @Html.PagedListPager((IPagedList)Model,page=>Url.Action("MovieList",new {page}))
+            <div class="row justify-content-center">
+                @Html.PagedListPager((IPagedList)Model,page=>Url.Action("MovieList",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
             </div>
         </div>
-        <div class="col-md-2 CategoryArea">
+        <div class="col-md-2">
             <div class="row">
                 <div class="col-md-12 text-center Categories">
-                    <h5 class="mt-2">Kategori</h5>
+                    <h5 class="mt-2">Kategoriler</h5>
                     @await Component.InvokeAsync("ListCategory")
                 </div>
                 <div class="col-12 Years text-center">
-                    <h5 class="mt-2">Yıl</h5>
+                    <h5 class="mt-2">Yıllar</h5>
                     @await Component.InvokeAsync("ListYear")
                 </div>
                 <div class="col-12 Country text-center">
-                    <h5 class="mt-2">Ülke</h5>
+                    <h5 class="mt-2">Ülkeler</h5>
                     @await Component.InvokeAsync("ListCountry")
                 </div>
             </div>

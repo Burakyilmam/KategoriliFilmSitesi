@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CategoryMovieApp.ViewComponents
 {
-    public class ListCountry : ViewComponent
+    public class ListCountryEN : ViewComponent
     {
         public IViewComponentResult Invoke()
         {
             CountryRepository cr = new CountryRepository();
-            var countrylist = cr.List().Where(x => x.CountryStatu == true).OrderBy(x => x.CountryNameTR); ;
+            var countrylist = cr.List().Where(x => x.CountryStatu == true).OrderBy(x => x.CountryNameEN); ;
             return View(countrylist);
         }
     }

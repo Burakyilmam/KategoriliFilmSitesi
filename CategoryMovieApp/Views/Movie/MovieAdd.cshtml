@@ -13,11 +13,17 @@
         <input required type="text" class="inputName" name="MovieDescription" placeholder="Filmin Açıklmasını Giriniz.">
         <input required type="text" class="inputName" name="MovieIMDB" placeholder="Filmin IMDB Puanını Giriniz.">
         <input required type="text" class="inputName" name="MovieImageUrl" placeholder="Filmin Resim Url'sini Giriniz.">
-        <select class="inputName" name="MovieBadge">
-            <option>Türkçe Altyazı / Türkçe Dublaj</option>
-            <option>Türkçe Dublaj</option>
-            <option>Türkçe Altyazı</option>
-            <option>Orjinal Dil</option>
+        <select class="inputName" name="MovieBadgeTR">
+            <option>Dublaj</option>
+            <option>Altyazı</option>
+            <option>Fragman</option>
+            <option>Orjinal</option>
+        </select>
+        <select class="inputName" name="MovieBadgeEN">
+            <option>Dubbing</option>
+            <option>Subtitle</option>
+            <option>Teaser</option>
+            <option>Original</option>
         </select>
         @await Component.InvokeAsync("ListMovieCategory")
         @await Component.InvokeAsync("ListMovieYear")

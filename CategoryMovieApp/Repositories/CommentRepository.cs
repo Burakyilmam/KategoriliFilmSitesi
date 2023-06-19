@@ -8,5 +8,10 @@ namespace CategoryMovieApp.Repositories
         {
             throw new NotImplementedException();
         }
+
+        internal object Set<T>()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

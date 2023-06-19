@@ -7,8 +7,48 @@
 
 @foreach(var item in Model)
 {
-    <img width="250" height="250" src="@item.MovieImageUrl">
-    @item.MovieId
+    <div class="container-fluid">
+        <div class="row">
+            <div style="text-align:start;" class="col-6 mt-2 mb-2">@item.MovieNameTR</div>
+            <div style="text-align:end;" class="col-6 mt-2 mb-2"><span style="padding:15px;background-color:orangered;border-radius:30px;text-align:center;font-weight:bolder;">@item.MovieIMDB</span></div>
+            <div style="text-align:start;" class="col-6 mt-2 mb-2">
+                <a href="/Movie/MovieList/">Ana Sayfa</a> / <a href="/Movie/GetCategoryMovie/@item.CategoryId">@item.Category.CategoryNameTR</a>
+            </div>
+            <div style="text-align:end;" class="col-6 mt-2 mb-2">
+                <a href="/Movie/MovieList/">Ana Sayfa</a> / <a href="/Movie/GetYearMovie/@item.YearId">@item.Year.YearName</a>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;text-align:center;" class="col-12">
+                <div style="border:1px solid black;padding:5px;" class="col"><a href="">Fragman</a></div>
+                <div style="border:1px solid black;padding:5px" class="col"><a href="">Link 1</a></div>
+                <div style="border:1px solid black;padding:5px;" class="col"><a href="">Link 2</a></div>
+                <div style="border:1px solid black;padding:5px;" class="col"><a href="">Link 3</a></div>
+            </div>
+            <div class="col-12">
+                <iframe width="100%" height="500px" src="https://www.youtube.com/embed/vwhD6Z7nArg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="col-6">
+                <div class="col-12">
+                    <img style="width:100%;height:500px;margin-left:-15px;"  src="@item.MovieImageUrl">
+                </div>
+            </div>
+                <div class="col-6">
+                <div class="col-12 mb-2">@item.MovieDescription</div>
+                <div class="col-12 mt-2 mb-2">@item.MovieBadgeTR</div>
+                <div class="col-12 mt-2 mb-2">
+                    Süre : 01:10:24
+                </div>
+                <div class="col-12 mt-2 mb-2">
+                    Yıl ve Ülke : <a href="/Movie/GetYearMovie/@item.YearId">@item.Year.YearName</a> - <a href="/Movie/GetCountryMovie/@item.CountryId">@item.Country.CountryNameTR</a>
+                </div>
+                <div class="col-12 mt-2 mb-2">
+                    Tür : <a href="/Movie/GetCategoryMovie/@item.CategoryId">@item.Category.CategoryNameTR</a>
+                </div>
+                </div>
+                <div class="col-12 mt-2 mb-2">
+                    Oyuncular Alanı
+                </div>
+        </div>
+    </div>
 }
 @await Component.InvokeAsync("ListComment",new {id=ViewBag.Id})
 <br />

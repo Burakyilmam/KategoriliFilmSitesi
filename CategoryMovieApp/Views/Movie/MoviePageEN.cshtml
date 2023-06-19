@@ -1,0 +1,15 @@
+﻿@using CategoryMovieApp.Models
+@model IEnumerable<Movie>
+@{
+    ViewData["Title"] = "MoviePage";
+    Layout = "~/Views/Shared/_LayoutEN.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <img width="250" height="250" src="@item.MovieImageUrl">
+    @item.MovieId
+}
+@await Component.InvokeAsync("ListComment",new {id=ViewBag.Id})
+<br />
+@await Html.PartialAsync("~/Views/Comment/CommentAdd.cshtml")

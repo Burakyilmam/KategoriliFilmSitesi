@@ -10,7 +10,8 @@ namespace CategoryMovieApp.Models
         public string MovieNameEN { get; set; }
         public string MovieDescription { get; set; }
         public string MovieImageUrl { get; set; }
-        public string MovieBadge { get; set; }
+        public string MovieBadgeTR { get; set; }
+        public string MovieBadgeEN { get; set; }
         public float MovieIMDB { get; set; }
         public DateTime MovieAddDate { get; set; }
         public bool MovieStatu = true;

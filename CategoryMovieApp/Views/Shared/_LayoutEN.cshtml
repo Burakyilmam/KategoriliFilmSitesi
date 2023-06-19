@@ -16,23 +16,22 @@
     <div class="container-fluid">
         <div class="Top">
             <div class="Logo">
-                <a href="/Movie/MovieList">
+                <a href="/Movie/MovieListEN">
                     Movie<span class="HD">HD</span>
                 </a>
             </div>
-
                 <!--
                             <div class="SearchBar">
                 <input type="text" name="" id="" placeholder="Aramak istediğiniz film/dizi adını yazınız.">
                     <button>
                         <i class="fa fa-search"></i>
                     </button>
-                            </div>
+                                </div>
                 -->
                 <div class="SearchBar">
                     @using (Html.BeginForm())
                     {
-                        <input type="text" name="p" id="" placeholder="Aramak istediğiniz film/dizi adını yazınız.">
+                        <input type="text" name="p" id="" placeholder="Enter Movie / TV Series name">
                         <button>
                             <i class="fa fa-search"></i>
                         </button>
@@ -40,10 +39,10 @@
                 </div>
             <div class="Login">
                 <div class="LoginBtn">
-                    <a href="/Movie/MovieAdminList"><i class="fa fa-sign-in"> Giriş Yap</i></a>
+                    <a href="/Movie/MovieAdminList"><i class="fa fa-sign-in"> Login</i></a>
                 </div>
                 <div class="EN">
-                    <a href="/Movie/MovieListEN"><img class="EN" src="https://www.avis.com.tr/assets/img/language-en.png" alt=""></a>
+                    <a href="/Movie/MovieList"><img class="TR" src="https://www.avis.com.tr/assets/img/language-tr.png" alt=""></a>
                 </div>
                 <div class="ToggleBtn"><button onclick="Toggle()"><i class="fa fa-bars"></i></button></div>
             </div>
@@ -52,19 +51,19 @@
         <div id="menu" class="Menu">
             <ul>
                 <a class="Active" href="">
-                <li>Filmler</li>
+                <li>Movies</li>
                 </a>
                 <a href="">
-                <li>Diziler</li>
+                <li>TV Series</li>
                 </a>
                 <a href="">
-                <li>Seriler</li>
+                <li>Series</li>
                 </a>
                 <a href="">
-                <li>Listeler</li>
+                <li>Lists</li>
                 </a>
                 <a href="">
-                <li>İletişim</li>
+                <li>Contact</li>
                 </a>
             </ul>
         </div>

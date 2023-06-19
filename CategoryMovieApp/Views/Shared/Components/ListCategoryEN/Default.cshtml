@@ -1,0 +1,12 @@
+﻿@using CategoryMovieApp.Models
+@model IEnumerable<Category>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-6 pt-2 pb-2"><a href="/Movie/GetCategoryMovieEN/@item.CategoryId">@item.CategoryNameEN</a></div>
+    }
+</div>
+
+
+
