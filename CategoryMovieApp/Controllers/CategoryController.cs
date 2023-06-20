@@ -20,6 +20,7 @@ namespace CategoryMovieApp.Controllers
         [HttpPost]
         public IActionResult CategoryAdd(Category c)
         {
+            c.CategoryStatu = true;
             cr.Add(c);     
             return RedirectToAction("CategoryList");
         }

@@ -1,0 +1,9 @@
+﻿@using CategoryMovieApp.Models
+@model IEnumerable<Language>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-6 pt-2 pb-2"><a href="/Movie/GetLanguageMovieEN/@item.LanguageId">@item.LanguageNameEN</a></div>
+    }
+</div>

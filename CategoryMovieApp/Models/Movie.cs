@@ -10,11 +10,10 @@ namespace CategoryMovieApp.Models
         public string MovieNameEN { get; set; }
         public string MovieDescription { get; set; }
         public string MovieImageUrl { get; set; }
-        public string MovieBadgeTR { get; set; }
-        public string MovieBadgeEN { get; set; }
         public float MovieIMDB { get; set; }
+        public string MovieLength { get; set; }
         public DateTime MovieAddDate { get; set; }
-        public bool MovieStatu = true;
+        public bool MovieStatu { get; set; }
         public int CategoryId { get; set; }
         public List<Comment> Comments { get; set; }
         public virtual Category Category { get; set; }
@@ -22,5 +21,7 @@ namespace CategoryMovieApp.Models
         public virtual Year Year { get; set; }
         public int CountryId { get; set; }
         public virtual Country Country { get; set; }
+        public int LanguageId { get; set; }
+        public virtual Language Language { get; set; }
     }
 }

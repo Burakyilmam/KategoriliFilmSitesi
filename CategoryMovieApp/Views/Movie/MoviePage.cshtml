@@ -33,9 +33,9 @@
             </div>
                 <div class="col-6">
                 <div class="col-12 mb-2">@item.MovieDescription</div>
-                <div class="col-12 mt-2 mb-2">@item.MovieBadgeTR</div>
+                <div class="col-12 mt-2 mb-2"><a href="/Movie/GetLanguageMovie/@item.LanguageId">@item.Language.LanguageNameTR</a></div>
                 <div class="col-12 mt-2 mb-2">
-                    Süre : 01:10:24
+                    @item.MovieLength
                 </div>
                 <div class="col-12 mt-2 mb-2">
                     Yıl ve Ülke : <a href="/Movie/GetYearMovie/@item.YearId">@item.Year.YearName</a> - <a href="/Movie/GetCountryMovie/@item.CountryId">@item.Country.CountryNameTR</a>

@@ -1,0 +1,9 @@
+﻿@using CategoryMovieApp.Models
+@model IEnumerable<Language>
+
+<select class="inputName" name="LanguageId">
+    @foreach (var item in Model)
+    {
+        <option value="@item.LanguageId">@item.LanguageNameTR</option>
+    }
+</select>

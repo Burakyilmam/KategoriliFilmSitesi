@@ -1,6 +1,7 @@
 ﻿using CategoryMovieApp.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace CategoryMovieApp.Repositories
 {
@@ -23,6 +24,10 @@ namespace CategoryMovieApp.Repositories
         public List<T> List(string ca,string ye ,string co)
         {
             return c.Set<T>().Include(ca).Include(ye).Include(co).ToList();
+        }
+        public List<T> List(string ca, string ye, string co , string ln)
+        {
+            return c.Set<T>().Include(ca).Include(ye).Include(co).Include(ln).ToList();
         }
         public void Add(T item)
         {

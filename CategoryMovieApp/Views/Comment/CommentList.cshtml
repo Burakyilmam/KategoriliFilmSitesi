@@ -18,7 +18,6 @@
             <th class="cst">Kullanıcı</th>
             <th class="cst">Statü</th>
             <th class="cup">Güncelle</th>
-            <th class="cdet">Detay</th>
             <th class="cdel">Sil</th>
         </tr>
 
@@ -28,8 +27,14 @@
                 <td>@item.CommentId</td>
                 <td>@item.CommentText</td>
                 <td>@item.CommentDate.ToString("dd MMMM yyyy")</td>
-                <td>@item.Movie.MovieNameTR</td>
-                <td>@item.User.UserName</td>
+                <td>
+                    <b>(@item.MovieId)</b>
+                    <br>
+                    @item.Movie.MovieNameTR</td>
+                <td>
+                    <b>(@item.UserId)</b>
+                    <br>
+                    @item.User.UserName</td>
                 <td>
                     <a id="statu" class="@item.CommentStatu">
                         @item.CommentStatu
@@ -38,11 +43,6 @@
                 <td>
                     <a class="btn-warning text-white" href="/Comment/GetComment/@item.CommentId">
                         <i class="fa fa-refresh"></i>
-                    </a>
-                </td>
-                <td>
-                    <a class="btn-danger" href="/Comment/GetComment/@item.CommentId">
-                        <i class="fa fa-info"></i>
                     </a>
                 </td>
                 <td>

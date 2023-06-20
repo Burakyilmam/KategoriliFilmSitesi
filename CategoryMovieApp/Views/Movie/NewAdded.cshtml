@@ -36,14 +36,15 @@
                 @foreach (var item in Model)
                 {
                     <div class="col-sm-6 col-md-4 col-lg-3 item">
+                        <span class="BadgeIMDB">@item.MovieIMDB</span>
+                        <span class="BadgeLanguage @item.Language.LanguageNameTR"><a href="/Movie/GetLanguage/@item.LanguageId">@item.Language.LanguageNameTR</a></span>
                         <a href="/Movie/MoviePage/@item.MovieId">
-                            <span class="BadgeIMDB">@item.MovieIMDB</span>
-                            <span class="BadgeLanguage @item.MovieBadgeTR">@item.MovieBadgeTR</span>
                             <img src="@item.MovieImageUrl" alt="">
                         </a>
                         <div class="row Info">
-                            <div class="col-6 Year">@item.Year.YearName</div>
-                            <div class="col-12 Text">@item.MovieNameTR</div>
+                            <div class="col-6 Year"><a href="/Movie/GetYearMovie/@item.YearId">@item.Year.YearName</a></div>
+                            <div class="col-6 Category"><a href="/Movie/GetCategory/Movie/@item.CategoryId">@item.Category.CategoryNameTR</a></div>
+                            <div class="col-12 Text"><a href="Movie/MoviePage/@item.MovieId">@item.MovieNameTR</a></div>
                         </div>
                     </div>
                 }
@@ -65,6 +66,10 @@
                 <div class="col-12 Country text-center">
                     <h5 class="mt-2">Ülkeler</h5>
                     @await Component.InvokeAsync("ListCountry")
+                </div>
+                <div class="col-12 Country text-center">
+                    <h5 class="mt-2">Diller</h5>
+                    @await Component.InvokeAsync("ListLanguage")
                 </div>
             </div>
         </div>

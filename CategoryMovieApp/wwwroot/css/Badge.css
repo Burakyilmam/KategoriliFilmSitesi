@@ -29,7 +29,7 @@
     z-index: 1;
     font: bold 13px Sans-Serif;
     position: absolute;
-    color: #000;
+    color: black;
     border-radius: 30px 30px 30px 30px;
     text-align: center;
     text-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px;
@@ -122,8 +122,8 @@
 .Text {
     text-align: center;
 }
-.Year , .Text {
-    padding-top:10px;
+.Year, .Text, .Category {
+    padding-top: 10px;
 }
 .Text{
     padding-bottom:20px;

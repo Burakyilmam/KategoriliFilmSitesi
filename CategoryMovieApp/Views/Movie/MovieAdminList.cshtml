@@ -24,7 +24,6 @@
             <th class="cst">Yıl</th>
             <th class="cst">Statü</th>
             <th class="cup">Güncelle</th>
-            <th class="cdet">Detay</th>
             <th class="cdel">Sil</th>
         </tr>
 
@@ -34,27 +33,33 @@
                 <td>@item.MovieId</td>
                 <td>@item.MovieNameTR</td>
                 <td>@item.MovieNameEN</td>
-                <td>@item.Category.CategoryNameTR</td>
-                <td>@item.Country.CountryNameTR</td>
+                <td>
+                    <b>(@item.CategoryId)</b>
+                    <br>
+                    @item.Category.CategoryNameTR</td>
+                <td>
+                    <b>(@item.CountryId)</b>
+                    <br>
+                    @item.Country.CountryNameTR</td>
                 <td>@item.MovieAddDate.ToString("dd MMMM yyyy")</td>
-                <td>@item.MovieBadgeTR</td>
+                <td>
+                    <b>(@item.LanguageId)</b>
+                    <br>
+                    @item.Language.LanguageNameTR</td>
                 <td>@item.MovieDescription</td>
                 <td>@item.MovieIMDB</td>
                 <td><img style="width:100%" src="@item.MovieImageUrl" /></td>
-                <td>@item.Year.YearName</td>
+                <td><b>(@item.YearId)</b>
+                    <br>
+                    @item.Year.YearName</td>
                 <td>
                     <a id="statu" class="@item.MovieStatu">
                         @item.MovieStatu
                     </a>
                 </td>
                 <td>
-                    <a class="btn-warning text-white" href="/Movie/MovieUpdate/@item.MovieId">
+                    <a class="btn-warning text-white" href="/Movie/GetMovie/@item.MovieId">
                         <i class="fa fa-refresh"></i>
-                    </a>
-                </td>
-                <td>
-                    <a class="btn-danger" href="/Movie/MovieInfo/@item.MovieId">
-                        <i class="fa fa-info"></i>
                     </a>
                 </td>
                 <td>

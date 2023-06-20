@@ -1,0 +1,21 @@
+﻿@model CategoryMovieApp.Models.Country
+@{
+    ViewData["Title"] = "GetCountry";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2 class="text-center mt-3 mb-3">Ülke Ekleme Paneli</h2>
+    @using (Html.BeginForm("CountryUpdate", "Country", FormMethod.Post))
+    {
+        @Html.TextBoxFor(x=>x.CountryId,new {@style="display:none;",@class="inputName"})
+        @Html.TextBoxFor(x=>x.CountryNameTR,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.CountryNameEN,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.CountryStatu,new {@class="inputName"})
+        <br />
+        <div class="addBtn">
+            <button class="btn-success text-center"><i class="fa fa-plus"></i></button>
+        </div>
+    }
+</div>
+

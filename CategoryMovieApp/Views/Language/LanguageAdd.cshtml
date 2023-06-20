@@ -1,0 +1,19 @@
+﻿@model CategoryMovieApp.Models.Language
+@{
+    ViewData["Title"] = "LanguageAdd";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2 class="text-center mt-3 mb-3">Kategori Ekleme Paneli</h2>
+    @using (Html.BeginForm("LanguageAdd", "Language", FormMethod.Post))
+    {
+        <input required type="text" class="inputName" name="LanguageNameTR" placeholder="Türkçe">
+        <input required type="text" class="inputName" name="LanguageNameEN" placeholder="İngilizce">
+        <br />
+        <div class="addBtn">
+            <button class="btn-success text-center"><i class="fa fa-plus"></i></button>
+        </div>
+    }
+</div>
+

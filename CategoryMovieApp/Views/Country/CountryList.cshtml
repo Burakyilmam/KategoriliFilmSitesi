@@ -1,0 +1,54 @@
+﻿@using CategoryMovieApp.Models
+@using X.PagedList.Mvc.Bootstrap4.Core;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@model PagedList<Country>
+@{
+    ViewData["Title"] = "CountryList";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+<div class="container-fluid">
+    <h2 class="text-center mt-3 mb-3">Ülke Bilgileri</h2>
+    <table class="table table-hover table-striped table-bordered text-center">
+        <tr>
+            <th class="cid">Id</th>
+            <th class="ctr">Ad</th>
+            <th class="ctr">Name</th>
+            <th class="cst">Statü</th>
+            <th class="cup">Güncelle</th>
+            <th class="cdel">Sil</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CountryId</td>
+                <td>@item.CountryNameTR</td>
+                <td>@item.CountryNameEN</td>
+                <td>
+                    <a id="statu" class="@item.CountryStatu">
+                        @item.CountryStatu
+                    </a>
+                </td>
+                <td>
+                    <a class="btn-warning text-white" href="/Country/GetCountry/@item.CountryId">
+                        <i class="fa fa-refresh"></i>
+                    </a>
+                </td>
+                <td>
+                    <a class="btn-primary" href="/Country/CountryDelete/@item.CountryId">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="row justify-content-center">
+        @Html.PagedListPager((IPagedList)Model,page=>Url.Action("CountryList",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+    </div>
+    <div class="text-center">
+        <a class="btn-success" href="/Country/CountryAdd/">
+            <i class="fa fa-plus"></i>
+        </a>
+    </div>
+</div>

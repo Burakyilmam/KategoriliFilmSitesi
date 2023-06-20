@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CategoryMovieApp.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230616183301_m12")]
-    partial class m12
+    [Migration("20230620182100_mig4")]
+    partial class mig4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,30 @@ namespace CategoryMovieApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("CategoryMovieApp.Models.Admin", b =>
+                {
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"), 1L, 1);
+
+                    b.Property<string>("AdminName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdminPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("AdminStatu")
+                        .HasColumnType("bit");
+
+                    b.HasKey("AdminId");
+
+                    b.ToTable("Admins");
+                });
 
             modelBuilder.Entity("CategoryMovieApp.Models.Category", b =>
                 {
@@ -59,9 +83,6 @@ namespace CategoryMovieApp.Migrations
                     b.Property<DateTime>("CommentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CommentLike")
-                        .HasColumnType("int");
-
                     b.Property<bool>("CommentStatu")
                         .HasColumnType("bit");
 
@@ -81,7 +102,7 @@ namespace CategoryMovieApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("CategoryMovieApp.Models.Country", b =>
@@ -92,7 +113,11 @@ namespace CategoryMovieApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"), 1L, 1);
 
-                    b.Property<string>("CountryName")
+                    b.Property<string>("CountryNameEN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CountryNameTR")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -101,7 +126,31 @@ namespace CategoryMovieApp.Migrations
 
                     b.HasKey("CountryId");
 
-                    b.ToTable("Country");
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("CategoryMovieApp.Models.Language", b =>
+                {
+                    b.Property<int>("LanguageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LanguageId"), 1L, 1);
+
+                    b.Property<string>("LanguageNameEN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LanguageNameTR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LanguageStatu")
+                        .HasColumnType("bit");
+
+                    b.HasKey("LanguageId");
+
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("CategoryMovieApp.Models.Movie", b =>
@@ -118,12 +167,11 @@ namespace CategoryMovieApp.Migrations
                     b.Property<int>("CountryId")
                         .HasColumnType("int");
 
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("MovieAddDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("MovieBadge")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MovieDescription")
                         .IsRequired()
@@ -136,6 +184,10 @@ namespace CategoryMovieApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("MovieLength")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("MovieNameEN")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -144,8 +196,8 @@ namespace CategoryMovieApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MovieView")
-                        .HasColumnType("int");
+                    b.Property<bool>("MovieStatu")
+                        .HasColumnType("bit");
 
                     b.Property<int>("YearId")
                         .HasColumnType("int");
@@ -155,6 +207,8 @@ namespace CategoryMovieApp.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CountryId");
+
+                    b.HasIndex("LanguageId");
 
                     b.HasIndex("YearId");
 
@@ -182,7 +236,7 @@ namespace CategoryMovieApp.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("CategoryMovieApp.Models.Year", b =>
@@ -202,7 +256,7 @@ namespace CategoryMovieApp.Migrations
 
                     b.HasKey("YearId");
 
-                    b.ToTable("Year");
+                    b.ToTable("Years");
                 });
 
             modelBuilder.Entity("CategoryMovieApp.Models.Comment", b =>
@@ -238,6 +292,12 @@ namespace CategoryMovieApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CategoryMovieApp.Models.Language", "Language")
+                        .WithMany("Movies")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("CategoryMovieApp.Models.Year", "Year")
                         .WithMany("Movies")
                         .HasForeignKey("YearId")
@@ -248,6 +308,8 @@ namespace CategoryMovieApp.Migrations
 
                     b.Navigation("Country");
 
+                    b.Navigation("Language");
+
                     b.Navigation("Year");
                 });
 
@@ -257,6 +319,11 @@ namespace CategoryMovieApp.Migrations
                 });
 
             modelBuilder.Entity("CategoryMovieApp.Models.Country", b =>
+                {
+                    b.Navigation("Movies");
+                });
+
+            modelBuilder.Entity("CategoryMovieApp.Models.Language", b =>
                 {
                     b.Navigation("Movies");
                 });

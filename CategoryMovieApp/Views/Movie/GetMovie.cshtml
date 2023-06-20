@@ -1,0 +1,29 @@
+﻿@model CategoryMovieApp.Models.Movie
+@{
+    ViewData["Title"] = "GetMovie";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2 class="text-center mt-3 mb-3">Kategori Ekleme Paneli</h2>
+    @using (Html.BeginForm("MovieUpdate", "Movie", FormMethod.Post))
+    {
+        @Html.TextBoxFor(x=>x.MovieId,new {@style="display:none;",@class="inputName"})
+        @Html.TextBoxFor(x=>x.MovieNameTR,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.MovieNameEN,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.MovieLength,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.CategoryId,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.CountryId,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.MovieAddDate,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.LanguageId,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.MovieDescription,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.MovieImageUrl,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.YearId,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.MovieStatu,new {@class="inputName"})
+        <br />
+        <div class="addBtn">
+            <button class="btn-success text-center"><i class="fa fa-plus"></i></button>
+        </div>
+    }
+</div>
+

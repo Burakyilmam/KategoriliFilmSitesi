@@ -25,7 +25,7 @@ namespace CategoryMovieApp.Controllers
         {
             c.CommentDate = DateTime.Today;
             c.CommentStatu = true;
-            c.UserId = 4;
+            c.UserId = 1;
             cr.Add(c);
             return RedirectToAction("MoviePage", "Movie", new { @id = c.MovieId });
 

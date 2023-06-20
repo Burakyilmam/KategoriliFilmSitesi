@@ -4,154 +4,10 @@
 @using CategoryMovieApp.Models
 @model IPagedList<Movie>
 @{
-    ViewData["Title"] = "MovieListEN";
+    ViewData["Title"] = "MovieList";
     Layout = "~/Views/Shared/_LayoutEN.cshtml";
 }
-<style>
-    .item {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .BadgeIMDB {
-        position: absolute;
-        overflow: hidden;
-        z-index: 1;
-        font: bold 13px Sans-Serif;
-        position: absolute;
-        color: #000;
-        border-radius: 30px 30px 30px 30px;
-        text-align: center;
-        text-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px;
-        top: 20px;
-        left: 30px;
-        padding: 10px 10px;
-        background-color: orangered;
-        background-image: -webkit-gradient(linear, left top, left bottom, from(orangered), to(darkorange));
-        background-image: -webkit-linear-gradient(top, orangered, darkorange);
-        background-image: -moz-linear-gradient(top, orangered, darkorange);
-        background-image: -ms-linear-gradient(top, orangered, darkorange);
-        background-image: -o-linear-gradient(top, orangered, darkorange);
-    }
-
-    .BadgeLanguage {
-        position: absolute;
-        overflow: hidden;
-        z-index: 1;
-        font: bold 13px Sans-Serif;
-        position: absolute;
-        color: #000;
-        border-radius: 30px 30px 30px 30px;
-        text-align: center;
-        text-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px;
-        width: 120px;
-        top: 20px;
-        right: 30px;
-        padding: 7px 0;
-    }
-
-    .Dublaj {
-        background-color: #BFDC7A;
-        background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
-        background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45);
-        background-image: -moz-linear-gradient(top, #BFDC7A, #8EBF45);
-        background-image: -ms-linear-gradient(top, #BFDC7A, #8EBF45);
-        background-image: -o-linear-gradient(top, #BFDC7A, #8EBF45);
-    }
-
-    .Dubbing {
-        background-color: #BFDC7A;
-        background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
-        background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45);
-        background-image: -moz-linear-gradient(top, #BFDC7A, #8EBF45);
-        background-image: -ms-linear-gradient(top, #BFDC7A, #8EBF45);
-        background-image: -o-linear-gradient(top, #BFDC7A, #8EBF45);
-    }
-
-    .Altyazı {
-        background-color: #06cbde;
-        background-image: -webkit-gradient(linear, left top, left bottom, from(#06cbde), to(#08e3f8));
-        background-image: -webkit-linear-gradient(top, #06cbde, #08e3f8);
-        background-image: -moz-linear-gradient(top, #06cbde, #08e3f8);
-        background-image: -ms-linear-gradient(top, #06cbde, #08e3f8);
-        background-image: -o-linear-gradient(top, #06cbde, #08e3f8);
-    }
-
-    .Subtitle {
-        background-color: #06cbde;
-        background-image: -webkit-gradient(linear, left top, left bottom, from(#06cbde), to(#08e3f8));
-        background-image: -webkit-linear-gradient(top, #06cbde, #08e3f8);
-        background-image: -moz-linear-gradient(top, #06cbde, #08e3f8);
-        background-image: -ms-linear-gradient(top, #06cbde, #08e3f8);
-        background-image: -o-linear-gradient(top, #06cbde, #08e3f8);
-    }
-
-    .Orjinal {
-        background-color: #ffa63a;
-        background-image: -webkit-gradient(linear, left top, left bottom, from(darkorange), to(#ffa63a));
-        background-image: -webkit-linear-gradient(top, darkorange, #ffa63a);
-        background-image: -moz-linear-gradient(top, darkorange, #ffa63a);
-        background-image: -ms-linear-gradient(top, darkorange, #ffa63a);
-        background-image: -o-linear-gradient(top, darkorange, #ffa63a);
-    }
-
-    .Original {
-        background-color: #ffa63a;
-        background-image: -webkit-gradient(linear, left top, left bottom, from(darkorange), to(#ffa63a));
-        background-image: -webkit-linear-gradient(top, darkorange, #ffa63a);
-        background-image: -moz-linear-gradient(top, darkorange, #ffa63a);
-        background-image: -ms-linear-gradient(top, darkorange, #ffa63a);
-        background-image: -o-linear-gradient(top, darkorange, #ffa63a);
-    }
-
-    .Fragman {
-        background-color: #e1e102;
-        background-image: -webkit-gradient(linear, left top, left bottom, from(yellow), to(#e1e102));
-        background-image: -webkit-linear-gradient(top, yellow, #e1e102);
-        background-image: -moz-linear-gradient(top, yellow, #e1e102);
-        background-image: -ms-linear-gradient(top, yellow, #e1e102);
-        background-image: -o-linear-gradient(top, yellow, #e1e102);
-    }
-
-    .Teaser {
-        background-color: #e1e102;
-        background-image: -webkit-gradient(linear, left top, left bottom, from(yellow), to(#e1e102));
-        background-image: -webkit-linear-gradient(top, yellow, #e1e102);
-        background-image: -moz-linear-gradient(top, yellow, #e1e102);
-        background-image: -ms-linear-gradient(top, yellow, #e1e102);
-        background-image: -o-linear-gradient(top, yellow, #e1e102);
-    }
-
-    .Info {
-        color: white;
-        background-color: #0b0b0bde;
-        width: 99.5%;
-        height: 100px;
-        margin-left: 1px;
-        margin-top: -10px;
-    }
-
-    .Category {
-        text-align: end;
-    }
-
-    .Year {
-        text-align: start;
-    }
-
-    .Text {
-        text-align: center;
-    }
-
-    .Category, .Year, .Text {
-        padding-top: 10px;
-    }
-
-    .Text {
-        padding-bottom: 20px;
-    }
-
-</style>
+<link href="~/css/badge.css" rel="stylesheet" />
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm Movies">
@@ -161,13 +17,13 @@
                         <a href="/Movie/NewAddedEN">
                         <li>New Added</li>
                         </a>
-                        <a href="/Movie/MostLike">
+                        <a href="/Movie/MostLikeEN">
                         <li>Most Like</li>
                         </a>
                         <a href="/Movie/MostCommentEN">
                         <li>Most Comment</li>
                         </a>
-                        <a href="/Movie/MostView">
+                        <a href="/Movie/MostViewEN">
                         <li>Most View</li>
                         </a>
                         <a href="/Movie/IMDB7EN">
@@ -180,14 +36,15 @@
                 @foreach (var item in Model)
                 {
                     <div class="col-sm-6 col-md-4 col-lg-3 item">
-                        <a href="/Movie/MoviePage/@item.MovieId">
-                            <span class="BadgeIMDB">@item.MovieIMDB</span>
-                            <span class="BadgeLanguage @item.MovieBadgeEN">@item.MovieBadgeEN</span>
+                        <span class="BadgeIMDB">@item.MovieIMDB</span>
+                        <span class="BadgeLanguage @item.Language.LanguageNameTR"><a href="/Movie/GetLanguageEN/@item.LanguageId">@item.Language.LanguageNameEN</a></span>
+                        <a href="/Movie/MoviePageEN/@item.MovieId">
                             <img src="@item.MovieImageUrl" alt="">
                         </a>
                         <div class="row Info">
-                            <div class="col-6 Year">@item.Year.YearName</div>
-                            <div class="col-12 Text">@item.MovieNameEN</div>
+                            <div class="col-6 Year"><a href="/Movie/GetYearMovieEN/@item.YearId">@item.Year.YearName</a></div>
+                            <div class="col-6 Category"><a href="/Movie/GetCategoryEN/Movie/@item.CategoryId">@item.Category.CategoryNameEN</a></div>
+                            <div class="col-12 Text"><a href="Movie/MoviePageEN/@item.MovieId">@item.MovieNameEN</a></div>
                         </div>
                     </div>
                 }
@@ -209,6 +66,10 @@
                 <div class="col-12 Country text-center">
                     <h5 class="mt-2">Countries</h5>
                     @await Component.InvokeAsync("ListCountryEN")
+                </div>
+                <div class="col-12 Country text-center">
+                    <h5 class="mt-2">Languages</h5>
+                    @await Component.InvokeAsync("ListLanguageEN")
                 </div>
             </div>
         </div>
