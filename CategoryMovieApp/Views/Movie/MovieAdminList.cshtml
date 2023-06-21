@@ -13,17 +13,10 @@
         <tr>
             <th class="cid">Film Id</th>
             <th class="ctr">Ad</th>
-            <th class="cen">Name</th>
-            <th class="cen">Kategori</th>
-            <th class="cen">Ülke</th>
-            <th class="cen">Eklenme Tarihi</th>
-            <th class="cen">Kurdele</th>
-            <th class="cen">Açıklama</th>
-            <th class="cst">IMDB</th>
             <th class="cst">Resim</th>
-            <th class="cst">Yıl</th>
             <th class="cst">Statü</th>
             <th class="cup">Güncelle</th>
+            <th class="cup">Detay</th>
             <th class="cdel">Sil</th>
         </tr>
 
@@ -32,26 +25,7 @@
             <tr>
                 <td>@item.MovieId</td>
                 <td>@item.MovieNameTR</td>
-                <td>@item.MovieNameEN</td>
-                <td>
-                    <b>(@item.CategoryId)</b>
-                    <br>
-                    @item.Category.CategoryNameTR</td>
-                <td>
-                    <b>(@item.CountryId)</b>
-                    <br>
-                    @item.Country.CountryNameTR</td>
-                <td>@item.MovieAddDate.ToString("dd MMMM yyyy")</td>
-                <td>
-                    <b>(@item.LanguageId)</b>
-                    <br>
-                    @item.Language.LanguageNameTR</td>
-                <td>@item.MovieDescription</td>
-                <td>@item.MovieIMDB</td>
                 <td><img style="width:100%" src="@item.MovieImageUrl" /></td>
-                <td><b>(@item.YearId)</b>
-                    <br>
-                    @item.Year.YearName</td>
                 <td>
                     <a id="statu" class="@item.MovieStatu">
                         @item.MovieStatu
@@ -63,7 +37,12 @@
                     </a>
                 </td>
                 <td>
-                    <a class="btn-primary" href="/Movie/MovieDelete/@item.MovieId">
+                    <a class="btn-primary text-white" href="/Movie/GetMovie/@item.MovieId">
+                        <i class="fa fa-info"></i>
+                    </a>
+                </td>
+                <td>
+                    <a class="btn-danger" href="/Movie/MovieDelete/@item.MovieId">
                         <i class="fa fa-trash"></i>
                     </a>
                 </td>

@@ -10,7 +10,7 @@ namespace CategoryMovieApp.Controllers
         CategoryRepository cr = new CategoryRepository();
         public IActionResult CategoryList(int page = 1)
         {
-            return View(cr.List().ToPagedList(page,10));
+            return View(cr.List().ToPagedList(page,5));
         }
         [HttpGet]
         public IActionResult CategoryAdd()

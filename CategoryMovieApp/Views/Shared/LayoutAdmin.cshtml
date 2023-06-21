@@ -6,34 +6,57 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="~/css/menu.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="~/css/category.css" rel="stylesheet" />
-    <script src="~/js/menu.js"></script>
 </head>
 <body>
     <div class="container-fluid">
-        <div id="menu" class="Menu">
-            <ul>
-                <a href="/Category/CategoryList">
-                <li>Kategoriler</li>
-                </a>
-                <a href="/Movie/MovieAdminList">
-                <li>Filmler</li>
-                </a>
-                <a href="">
-                <li>Diziler</li>
-                </a>
-                <a href="/Comment/CommentList">
-                <li>Yorumlar</li>
-                </a>
-                <a href="/User/UserList">
-                <li>Kullanıcılar</li>
-                </a>
-            </ul>
+
+        <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+            <button class="w3-bar-item w3-button w3-large"
+                    onclick="w3_close()">
+                    <i class="fa fa-bars"></i>
+            </button>
+            <a href="/Movie/MovieAdminList" class="w3-bar-item w3-button">Filmler</a>
+            <a href="/Movie/MovieAdminList" class="w3-bar-item w3-button">Diziler</a>
+            <a href="/Country/CountryList" class="w3-bar-item w3-button">Ülkeler</a>
+            <a href="/Year/YearList" class="w3-bar-item w3-button">Yıllar</a>
+            <a href="/Language/LanguageList" class="w3-bar-item w3-button">Diller</a>
+            <a href="/Category/CategoryList" class="w3-bar-item w3-button">Kategoriler</a>
+            <a href="/Comment/CommentList" class="w3-bar-item w3-button">Yorumlar</a>
+            <a href="/User/UserList" class="w3-bar-item w3-button">Kullanıcılar</a>
+        </div>
+
+        <div id="main">
+
+            <div class="w3-teal">
+                <div class="row">
+                    <div class="col-6">
+                        <button id="openNav" style="text-align:start" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+                    </div>
+                    <div style="text-align:end;padding-right:30px;padding-top:10px;" class="col-6">
+                        <a  href="/Movie/MovieList">Çıkış Yap</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div>
             @RenderBody()
         </div>
+        <script>
+            function w3_open() {
+                document.getElementById("main").style.marginLeft = "25%";
+                document.getElementById("mySidebar").style.width = "25%";
+                document.getElementById("mySidebar").style.display = "block";
+                document.getElementById("openNav").style.display = 'none';
+            }
+            function w3_close() {
+                document.getElementById("main").style.marginLeft = "0%";
+                document.getElementById("mySidebar").style.display = "none";
+                document.getElementById("openNav").style.display = "inline-block";
+            }
+        </script>
     </div>
 </body>
 </html>

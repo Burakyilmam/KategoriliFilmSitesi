@@ -8,7 +8,18 @@
     Layout = "~/Views/Shared/_LayoutTR.cshtml";
 }
 <link href="~/css/badge.css" rel="stylesheet" />
+<link href="~/css/slider.css" rel="stylesheet" />
+<link href="~/css/flickity.css" rel="stylesheet" />
+<script src="~/js/flickity.pkgd.min.js"></script>
 <div class="container-fluid">
+    <div class="carousel pt-2 pb-4" data-flickity='{ "autoPlay": 2000, "pauseAutoPlayOnHover": false }'>
+            @foreach(var item in Model)
+            {
+                <div class="carousel-cell">
+                <a href="/Movie/MoviePage/@item.MovieId"><img width="100%" height="400px" src="@item.MovieImageUrl" alt="Alternate Text" /></a>
+                </div>
+            }
+        </div>
     <div class="row">
         <div class="col-sm Movies">
             <div class="row">
