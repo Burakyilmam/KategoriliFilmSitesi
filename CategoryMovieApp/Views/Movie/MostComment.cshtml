@@ -5,7 +5,7 @@
 @model IPagedList<Movie>
 @{
     ViewData["Title"] = "MovieList";
-    Layout = "~/Views/Shared/_LayoutEN.cshtml";
+    Layout = "~/Views/Shared/_LayoutTR.cshtml";
 }
 <link href="~/css/badge.css" rel="stylesheet" />
 <link href="~/css/slider.css" rel="stylesheet" />
@@ -13,21 +13,44 @@
 <script src="~/js/flickity.pkgd.min.js"></script>
 <div class="container-fluid">
     <div class="carousel pt-2 pb-4" data-flickity='{ "autoPlay": 2000, "pauseAutoPlayOnHover": false }'>
-        @await Component.InvokeAsync("ListSliderEN")
+        @await Component.InvokeAsync("ListSlider")
     </div>
+    <div class="row">
+        <div class="col-sm Movies">
+            <div class="row">
+                <div class="Filter">
+                    <ul>
+                        <a href="/Movie/NewAdded">
+                        <li>Yeni Eklenenler</li>
+                        </a>
+                        <a href="/Movie/MostLike">
+                        <li>Çok Beğenilen</li>
+                        </a>
+                        <a href="/Movie/MostComment">
+                        <li>Çok Yorumlanan</li>
+                        </a>
+                        <a href="/Movie/MostView">
+                        <li>Çok İzlenen</li>
+                        </a>
+                        <a href="/Movie/IMDB7">
+                        <li>IMDB 7+</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
             <div class="row MovieArea">
                 @foreach (var item in Model)
                 {
                     <div class="col-sm-6 col-md-4 col-lg-3 item">
                         <span class="BadgeIMDB">@item.MovieIMDB</span>
-                        <span class="BadgeLanguage @item.Language.LanguageNameTR"><a href="/Movie/GetLanguageEN/@item.LanguageId">@item.Language.LanguageNameEN</a></span>
-                        <a href="/Movie/MoviePageEN/@item.MovieId">
+                        <span class="BadgeLanguage @item.Language.LanguageNameTR"><a href="/Movie/GetLanguage/@item.LanguageId">@item.Language.LanguageNameTR</a></span>
+                        <a href="/Movie/MoviePage/@item.MovieId">
                             <img src="@item.MovieImageUrl" alt="">
                         </a>
                         <div class="row Info">
-                            <div class="col-6 Year"><a href="/Movie/GetYearMovieEN/@item.YearId">@item.Year.YearName</a></div>
-                            <div class="col-6 Category"><a href="/Movie/GetCategoryEN/Movie/@item.CategoryId">@item.Category.CategoryNameEN</a></div>
-                            <div class="col-12 Text"><a href="Movie/MoviePageEN/@item.MovieId">@item.MovieNameEN</a></div>
+                            <div class="col-6 Year"><a href="/Movie/GetYearMovie/@item.YearId">@item.Year.YearName</a></div>
+                            <div class="col-6 Category"><a href="/Movie/GetCategory/Movie/@item.CategoryId">@item.Category.CategoryNameTR</a></div>
+                            <div class="col-12 Text"><a href="Movie/MoviePage/@item.MovieId">@item.MovieNameTR</a></div>
                         </div>
                     </div>
                 }
@@ -39,20 +62,20 @@
         <div class="col-md-2">
             <div class="row">
                 <div class="col-md-12 text-center Categories">
-                    <h5 class="mt-2">Categories</h5>
-                    @await Component.InvokeAsync("ListCategoryEN")
+                    <h5 class="mt-2">Kategoriler</h5>
+                    @await Component.InvokeAsync("ListCategory")
                 </div>
                 <div class="col-12 Years text-center">
-                    <h5 class="mt-2">Years</h5>
-                    @await Component.InvokeAsync("ListYearEN")
+                    <h5 class="mt-2">Yıllar</h5>
+                    @await Component.InvokeAsync("ListYear")
                 </div>
                 <div class="col-12 Country text-center">
-                    <h5 class="mt-2">Countries</h5>
-                    @await Component.InvokeAsync("ListCountryEN")
+                    <h5 class="mt-2">Ülkeler</h5>
+                    @await Component.InvokeAsync("ListCountry")
                 </div>
                 <div class="col-12 Country text-center">
-                    <h5 class="mt-2">Languages</h5>
-                    @await Component.InvokeAsync("ListLanguageEN")
+                    <h5 class="mt-2">Diller</h5>
+                    @await Component.InvokeAsync("ListLanguage")
                 </div>
             </div>
         </div>
