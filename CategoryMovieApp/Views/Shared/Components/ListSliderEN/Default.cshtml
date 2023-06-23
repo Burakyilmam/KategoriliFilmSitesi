@@ -1,0 +1,9 @@
+﻿@using CategoryMovieApp.Models
+@model IEnumerable<Movie>
+
+@foreach (var item in Model)
+{
+    <div class="carousel-cell">
+        <a href="/Movie/MoviePageEN/@item.MovieId"><img width="100%" height="400px" src="@item.MovieImageUrl" alt="Alternate Text" /></a>
+    </div>
+}

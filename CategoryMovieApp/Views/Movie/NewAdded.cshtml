@@ -8,7 +8,13 @@
     Layout = "~/Views/Shared/_LayoutTR.cshtml";
 }
 <link href="~/css/badge.css" rel="stylesheet" />
+<link href="~/css/slider.css" rel="stylesheet" />
+<link href="~/css/flickity.css" rel="stylesheet" />
+<script src="~/js/flickity.pkgd.min.js"></script>
 <div class="container-fluid">
+    <div class="carousel pt-2 pb-4" data-flickity='{ "autoPlay": 2000, "pauseAutoPlayOnHover": false }'>
+        @await Component.InvokeAsync("ListSlider")
+    </div>
     <div class="row">
         <div class="col-sm Movies">
             <div class="row">
