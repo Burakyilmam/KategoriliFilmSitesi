@@ -15,70 +15,71 @@
     <div class="carousel pt-2 pb-4" data-flickity='{ "autoPlay": 2000, "pauseAutoPlayOnHover": false }'>
         @await Component.InvokeAsync("ListSliderEN")
     </div>
+    <div class="row">
+        <div class="col-sm Movies">
             <div class="row">
-                <div class="col-sm Movies">
-                    <div class="row">
-                        <div class="Filter">
-                            <ul>
-                                <a href="/Movie/NewAddedEN">
-                                <li>New Added</li>
-                                </a>
-                                <a href="/Movie/MostLikeEN">
-                                <li>Most Like</li>
-                                </a>
-                                <a href="/Movie/MostCommentEN">
-                                <li>Most Comment</li>
-                                </a>
-                                <a href="/Movie/MostViewEN">
-                                <li>Most View</li>
-                                </a>
-                                <a href="/Movie/IMDB7EN">
-                                <li>IMDB 7+</li>
-                                </a>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row MovieArea">
-                        @foreach (var item in Model)
-                        {
-                            <div class="col-sm-6 col-md-4 col-lg-3 item">
-                                <span class="BadgeIMDB">@item.MovieIMDB</span>
-                                <span class="BadgeLanguage @item.Language.LanguageNameTR"><a href="/Movie/GetLanguageEN/@item.LanguageId">@item.Language.LanguageNameEN</a></span>
-                                <a href="/Movie/MoviePageEN/@item.MovieId">
-                                    <img src="@item.MovieImageUrl" alt="">
-                                </a>
-                                <div class="row Info">
-                                    <div class="col-6 Year"><a href="/Movie/GetYearMovieEN/@item.YearId">@item.Year.YearName</a></div>
-                                    <div class="col-6 Category"><a href="/Movie/GetCategoryEN/Movie/@item.CategoryId">@item.Category.CategoryNameEN</a></div>
-                                    <div class="col-12 Text"><a href="Movie/MoviePageEN/@item.MovieId">@item.MovieNameEN</a></div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                    <div class="row justify-content-center">
-                        @Html.PagedListPager((IPagedList)Model,page=>Url.Action("MovieList",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
-                    </div>
+                <div class="Filter">
+                    <ul>
+                        <a href="/Movie/NewAddedEN">
+                        <li>New Added</li>
+                        </a>
+                        <a href="/Movie/MostLikeEN">
+                        <li>Most Like</li>
+                        </a>
+                        <a href="/Movie/MostCommentEN">
+                        <li>Most Comment</li>
+                        </a>
+                        <a href="/Movie/MostViewEN">
+                        <li>Most View</li>
+                        </a>
+                        <a href="/Movie/IMDB7EN">
+                        <li>IMDB 7+</li>
+                        </a>
+                    </ul>
                 </div>
-                <div class="col-md-2">
-                    <div class="row">
-                        <div class="col-md-12 text-center Categories">
-                            <h5 class="mt-2">Categories</h5>
-                            @await Component.InvokeAsync("ListCategoryEN")
-                        </div>
-                        <div class="col-12 Years text-center">
-                            <h5 class="mt-2">Years</h5>
-                            @await Component.InvokeAsync("ListYearEN")
-                        </div>
-                        <div class="col-12 Country text-center">
-                            <h5 class="mt-2">Countries</h5>
-                            @await Component.InvokeAsync("ListCountryEN")
-                        </div>
-                        <div class="col-12 Country text-center">
-                            <h5 class="mt-2">Languages</h5>
-                            @await Component.InvokeAsync("ListLanguageEN")
+            </div>
+            <div class="row MovieArea">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-6 col-md-4 col-lg-3 item">
+                        <span class="BadgeIMDB">@item.MovieIMDB</span>
+                        <span class="BadgeLanguage @item.Language.LanguageNameTR"><a href="/Movie/GetLanguageEN/@item.LanguageId">@item.Language.LanguageNameEN</a></span>
+                        <a href="/Movie/MoviePageEN/@item.MovieId">
+                            <img src="@item.MovieImageUrl" alt="">
+                        </a>
+                        <div class="row Info">
+                            <div class="col-4 Year"><a href="/Movie/GetYearMovieEN/@item.YearId">@item.Year.YearName</a></div>
+                            <div class="col-4 View"><a><i class="fa fa-eye">@item.MovieViewCount</i></a></div>
+                            <div class="col-4 Category"><a href="/Movie/GetCategoryEN/Movie/@item.CategoryId">@item.Category.CategoryNameEN</a></div>
+                            <div class="col-12 Text"><a href="Movie/MoviePageEN/@item.MovieId">@item.MovieNameEN</a></div>
                         </div>
                     </div>
+                }
+            </div>
+            <div class="row justify-content-center">
+                @Html.PagedListPager((IPagedList)Model,page=>Url.Action("MovieList",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-12 text-center Categories">  
+                    <h5 class="mt-2">Categories</h5>
+                    @await Component.InvokeAsync("ListCategoryEN")
+                </div>
+                <div class="col-12 Years text-center">
+                    <h5 class="mt-2">Years</h5>
+                    @await Component.InvokeAsync("ListYearEN")
+                </div>
+                <div class="col-12 Country text-center">
+                    <h5 class="mt-2">Countries</h5>
+                    @await Component.InvokeAsync("ListCountryEN")
+                </div>
+                <div class="col-12 Country text-center">
+                    <h5 class="mt-2">Languages</h5>
+                    @await Component.InvokeAsync("ListLanguageEN")
                 </div>
             </div>
         </div>
+    </div>
+</div>
 

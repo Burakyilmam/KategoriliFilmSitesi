@@ -119,12 +119,12 @@
 .Year{
     text-align:start;
 }
-.Text {
+.Text ,.View {
     text-align: center;
 }
-.Year, .Text, .Category {
+.Year, .Text, .Category , .View {
     padding-top: 10px;
 }
-.Text{
-    padding-bottom:20px;
+.Text {
+    padding-bottom: 20px;
 }

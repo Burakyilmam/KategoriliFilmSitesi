@@ -35,7 +35,10 @@
                 <div class="col-12 mb-2">@item.MovieDescription</div>
                 <div class="col-12 mt-2 mb-2"><a href="/Movie/GetLanguageMovie/@item.LanguageId">@item.Language.LanguageNameTR</a></div>
                 <div class="col-12 mt-2 mb-2">
-                    @item.MovieLength
+                   Uzunluk : @item.MovieLength
+                </div>
+                <div class="col-12 mt-2 mb-2">
+                    İzlenme : @item.MovieViewCount
                 </div>
                 <div class="col-12 mt-2 mb-2">
                     Yıl ve Ülke : <a href="/Movie/GetYearMovie/@item.YearId">@item.Year.YearName</a> - <a href="/Movie/GetCountryMovie/@item.CountryId">@item.Country.CountryNameTR</a>

@@ -48,8 +48,9 @@
                                     <img src="@item.MovieImageUrl" alt="">
                                 </a>
                                 <div class="row Info">
-                                    <div class="col-6 Year"><a href="/Movie/GetYearMovieEN/@item.YearId">@item.Year.YearName</a></div>
-                                    <div class="col-6 Category"><a href="/Movie/GetCategoryEN/Movie/@item.CategoryId">@item.Category.CategoryNameEN</a></div>
+                                    <div class="col-4 Year"><a href="/Movie/GetYearMovieEN/@item.YearId">@item.Year.YearName</a></div>
+                                    <div class="col-4 View"><a><i class="fa fa-eye">@item.MovieViewCount</i></a></div>
+                                    <div class="col-4 Category"><a href="/Movie/GetCategoryEN/Movie/@item.CategoryId">@item.Category.CategoryNameEN</a></div>
                                     <div class="col-12 Text"><a href="Movie/MoviePageEN/@item.MovieId">@item.MovieNameEN</a></div>
                                 </div>
                             </div>

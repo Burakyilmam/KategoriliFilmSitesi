@@ -11,6 +11,7 @@ namespace CategoryMovieApp.Models
         public string MovieDescription { get; set; }
         public string MovieImageUrl { get; set; }
         public float MovieIMDB { get; set; }
+        public int MovieViewCount { get; set; }
         public string MovieLength { get; set; }
         public DateTime MovieAddDate { get; set; }
         public bool MovieStatu { get; set; }

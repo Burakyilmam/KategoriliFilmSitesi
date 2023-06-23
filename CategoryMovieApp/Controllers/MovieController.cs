@@ -132,7 +132,7 @@ namespace CategoryMovieApp.Controllers
         {
             if (!string.IsNullOrEmpty(p))
             {
-                return View(mr.List("Year").Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
+                return View(mr.List("Year", "Language", "Country", "Category").Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
             }
             return View(mr.List("Year", "Language", "Country", "Category").OrderByDescending(x => x.MovieAddDate).Where(x => x.LanguageId == id).ToPagedList(page, 12));
         }
@@ -140,18 +140,49 @@ namespace CategoryMovieApp.Controllers
         {
             if (!string.IsNullOrEmpty(p))
             {
-                return View(mr.List("Year").Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
+                return View(mr.List("Year", "Language", "Country", "Category").Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
             }
             return View(mr.List("Year","Language","Country","Category").OrderByDescending(x => x.MovieAddDate).Where(x => x.LanguageId == id).ToPagedList(page, 12));
         }
+        public IActionResult MostView(string p, int page = 1)
+        {
+            if (!string.IsNullOrEmpty(p))
+            {
+                return View(mr.List("Year", "Language", "Country", "Category").Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
+            }
+            return View(mr.List("Year", "Language", "Country", "Category").OrderByDescending(x=>x.MovieViewCount).ToPagedList(page, 12));
+        }
+        public IActionResult MostViewEN(string p, int page = 1)
+        {
+            if (!string.IsNullOrEmpty(p))
+            {
+                return View(mr.List("Year", "Language", "Country", "Category").Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
+            }
+            return View(mr.List("Year", "Language", "Country", "Category").OrderByDescending(x => x.MovieViewCount).ToPagedList(page, 12));
+        }
         public ActionResult MoviePage(int id ,string ye,string ca,string co,string ln)
         {
+            var film = mr.Get(id);
+
+            if (film != null)
+            {
+                film.MovieViewCount++;
+                mr.Update(film);
+            }
             ViewBag.Id = id;
             return View(mr.List("Category","Year","Country","Language").Where(x => x.MovieId == id));
         }
-        public ActionResult MoviePageEN(int id, string ye, string ca, string co , string ln)
+        public ActionResult MoviePageEN(int id, string ye, string ca, string co , string ln , Movie m)
         {
+            var film = mr.Get(id);
+
+            if (film != null)
+            {
+                film.MovieViewCount++;
+                mr.Update(film);
+            }
             ViewBag.Id = id;
+            
             return View(mr.List("Category","Year","Country","Language").Where(x => x.MovieId == id));
         }
 
