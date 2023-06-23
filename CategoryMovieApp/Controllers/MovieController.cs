@@ -7,6 +7,7 @@ using System.Diagnostics.Metrics;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Xml.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace CategoryMovieApp.Controllers
 {
@@ -69,7 +70,7 @@ namespace CategoryMovieApp.Controllers
             {
                 return View(mr.List("Year", "Language", "Country", "Category").Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
             }
-            return View(mr.List("Year", "Language", "Category").ToPagedList(page, 12));
+            return View(mr.MostComment("Year", "Language", "Country", "Category").ToPagedList(page, 12));
         }
         public IActionResult MostCommentEN(string p, int page = 1)
         {
@@ -77,7 +78,7 @@ namespace CategoryMovieApp.Controllers
             {
                 return View(mr.List("Year", "Language", "Country", "Category").Where(x => (x.MovieNameTR.Contains((CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))) || (x.MovieNameEN.Contains(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.ToLower()))))).ToPagedList(page, 12));
             }
-            return View(mr.List("Year", "Language", "Category").ToPagedList(page, 12));
+            return View(mr.MostComment("Year", "Language", "Country", "Category").ToPagedList(page, 12));
         }
         public ActionResult GetCategoryMovie(string p ,int id, int page = 1)
         {
