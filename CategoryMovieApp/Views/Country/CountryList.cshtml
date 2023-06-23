@@ -26,9 +26,17 @@
                 <td>@item.CountryNameTR</td>
                 <td>@item.CountryNameEN</td>
                 <td>
-                    <a id="statu" class="@item.CountryStatu">
-                        @item.CountryStatu
-                    </a>
+
+                    @if (item.CountryStatu == true)
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.CountryStatu btn-success">
+                        </a>
+                    }
+                    else
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.CountryStatu btn-danger">
+                        </a>
+                    }
                 </td>
                 <td>
                     <a class="btn-warning text-white" href="/Country/GetCountry/@item.CountryId">

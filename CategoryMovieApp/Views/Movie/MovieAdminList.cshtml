@@ -27,9 +27,17 @@
                 <td>@item.MovieNameTR</td>
                 <td><img style="width:100%" src="@item.MovieImageUrl" /></td>
                 <td>
-                    <a id="statu" class="@item.MovieStatu">
-                        @item.MovieStatu
-                    </a>
+
+                    @if (item.MovieStatu == true)
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.MovieStatu btn-success">
+                        </a>
+                    }
+                    else
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.MovieStatu btn-danger">
+                        </a>
+                    }
                 </td>
                 <td>
                     <a class="btn-warning text-white" href="/Movie/GetMovie/@item.MovieId">

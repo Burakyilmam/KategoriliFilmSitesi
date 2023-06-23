@@ -9,17 +9,31 @@
     @using (Html.BeginForm("MovieUpdate", "Movie", FormMethod.Post))
     {
         @Html.TextBoxFor(x=>x.MovieId,new {@style="display:none;",@class="inputName"})
+        <h2 class="text-center col-12">Adı</h2>
         @Html.TextBoxFor(x=>x.MovieNameTR,new {@class="inputName"})
+        <h2 class="text-center col-12">İngilizce Adı</h2>
         @Html.TextBoxFor(x=>x.MovieNameEN,new {@class="inputName"})
+        <h2 class="text-center col-12">Uzunluğu</h2>
         @Html.TextBoxFor(x=>x.MovieLength,new {@class="inputName"})
+        <h2 class="text-center col-12">IMDB Puanı</h2>
         @Html.TextBoxFor(x=>x.MovieIMDB,new {@class="inputName"})
+        <h2 class="text-center col-12">Kategorisi</h2>
         @Html.TextBoxFor(x=>x.CategoryId,new {@class="inputName"})
+        <h2 class="text-center col-12">Ülkesi</h2>
         @Html.TextBoxFor(x=>x.CountryId,new {@class="inputName"})
-        @Html.TextBoxFor(x=>x.MovieAddDate,new {@class="inputName"})
+        <h2 class="text-center col-12">Eklenme Tarihi</h2>
+        @Html.TextBoxFor(m => m.MovieAddDate,"{0:yyyy-MM-dd}", new { type = "date" , @class="inputName"})
+        <h2 class="text-center col-12">Dili</h2>
         @Html.TextBoxFor(x=>x.LanguageId,new {@class="inputName"})
+        <h2 class="text-center col-12">Açıklaması</h2>
         @Html.TextBoxFor(x=>x.MovieDescription,new {@class="inputName"})
+        <h2 class="text-center col-12">Resim Urlsi</h2>
         @Html.TextBoxFor(x=>x.MovieImageUrl,new {@class="inputName"})
+        <h2 class="text-center col-12">Yılı</h2>
         @Html.TextBoxFor(x=>x.YearId,new {@class="inputName"})
+        <h2 class="text-center col-12">İzlenme Sayısı</h2>
+        @Html.TextBoxFor(x=>x.MovieViewCount,new {@class="inputName"})
+        <h2 class="text-center col-12">Statüsü</h2>
         @Html.TextBoxFor(x=>x.MovieStatu,new {@class="inputName"})
         <br />
         <div class="addBtn">

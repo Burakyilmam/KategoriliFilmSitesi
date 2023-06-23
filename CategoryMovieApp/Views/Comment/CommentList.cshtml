@@ -36,9 +36,17 @@
                     <br>
                     @item.User.UserName</td>
                 <td>
-                    <a id="statu" class="@item.CommentStatu">
-                        @item.CommentStatu
-                    </a>
+
+                    @if (item.CommentStatu == true)
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.CommentStatu btn-success">
+                        </a>
+                    }
+                    else
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.CommentStatu btn-danger">
+                        </a>
+                    }
                 </td>
                 <td>
                     <a class="btn-warning text-white" href="/Comment/GetComment/@item.CommentId">

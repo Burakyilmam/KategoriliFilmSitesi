@@ -26,9 +26,17 @@
                 <td>@item.UserName</td>
                 <td>@item.UserPassword</td>
                 <td>
-                    <a id="statu" class="@item.UserStatu">
-                        @item.UserStatu
-                    </a>
+
+                    @if (item.UserStatu == true)
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.UserStatu btn-success">
+                        </a>
+                    }
+                    else
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.UserStatu btn-danger">
+                        </a>
+                    }
                 </td>
                 <td>
                     <a class="btn-warning text-white" href="/User/GetUser/@item.UserId">

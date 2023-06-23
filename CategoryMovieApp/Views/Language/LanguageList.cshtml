@@ -26,9 +26,17 @@
                 <td>@item.LanguageNameTR</td>
                 <td>@item.LanguageNameEN</td>
                 <td>
-                    <a id="statu" class="@item.LanguageStatu">
-                        @item.LanguageStatu
-                    </a>
+
+                    @if (item.LanguageStatu == true)
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.LanguageStatu btn-success">
+                        </a>
+                    }
+                    else
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.LanguageStatu btn-danger">
+                        </a>
+                    }
                 </td>
                 <td>
                     <a class="btn-warning text-white" href="/Language/GetLanguage/@item.LanguageId">

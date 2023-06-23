@@ -219,6 +219,8 @@ namespace CategoryMovieApp.Controllers
             movie.MovieAddDate = m.MovieAddDate;
             movie.LanguageId = m.LanguageId;
             movie.MovieLength = m.MovieLength;
+            movie.MovieViewCount = m.MovieViewCount;
+            movie.MovieStatu = m.MovieStatu;
             mr.Update(movie);
             return RedirectToAction("MovieAdminList");
         }
@@ -244,6 +246,8 @@ namespace CategoryMovieApp.Controllers
                 MovieAddDate = movie.MovieAddDate,
                 LanguageId = movie.LanguageId,
                 MovieLength = movie.MovieLength,
+                MovieViewCount = movie.MovieViewCount,
+                MovieStatu = movie.MovieStatu,
             };
             return View(m);
         }

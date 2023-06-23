@@ -24,9 +24,17 @@
                 <td>@item.YearId</td>
                 <td>@item.YearName</td>
                 <td>
-                    <a id="statu" class="@item.YearStatu">
-                        @item.YearStatu
-                    </a>
+
+                    @if (item.YearStatu == true)
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.YearStatu btn-success">
+                        </a>
+                    }
+                    else
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.YearStatu btn-danger">
+                        </a>
+                    }
                 </td>
                 <td>
                     <a class="btn-warning text-white" href="/Year/GetYear/@item.YearId">
