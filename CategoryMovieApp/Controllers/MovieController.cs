@@ -284,7 +284,7 @@ namespace CategoryMovieApp.Controllers
             ViewBag.Categories = categoryItems;
             ViewBag.Countries = countryItems;
             ViewBag.Years = yearItems;
-            ViewBag.Languages = yearItems;
+            ViewBag.Languages = languageItems;
 
             return View(m);
         }
