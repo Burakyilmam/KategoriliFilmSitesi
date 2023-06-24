@@ -12,9 +12,21 @@
         @Html.TextBoxFor(x=>x.CommentId,new {@style="display:none;",@class="inputName"})
         @Html.TextBoxFor(x=>x.CommentText,new {@class="inputName"})
         @Html.TextBoxFor(x=>x.CommentDate,new {@class="inputName"})
-        @Html.TextBoxFor(x=>x.CommentStatu,new {@class="inputName"})
-        @Html.TextBoxFor(x=>x.MovieId,new {@class="inputName"})
-        @Html.TextBoxFor(x=>x.UserId,new {@class="inputName"})
+        @Html.DropDownList("CommentStatu", new List<SelectListItem>
+        {
+        new SelectListItem { Value = "True", Text = "Aktif" },
+        new SelectListItem { Value = "False", Text = "Pasif" }
+        }, "-- Seçiniz --", new {@class="inputName"})
+        @Html.DropDownListFor(model => model.MovieId, ((IEnumerable<SelectListItem>)ViewBag.Movies).Select(c => new SelectListItem
+        {
+        Value = c.Value,
+        Text = $"{c.Value} - {c.Text}"
+        }),new {@class="inputName"})
+        @Html.DropDownListFor(model => model.UserId, ((IEnumerable<SelectListItem>)ViewBag.Users).Select(c => new SelectListItem
+        {
+        Value = c.Value,
+        Text = $"{c.Value} - {c.Text}"
+        }),new {@class="inputName"})
         <br />
         <div class="addBtn">
             <button class="btn-success text-center"><i class="fa fa-plus"></i></button>

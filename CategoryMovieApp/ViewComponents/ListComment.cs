@@ -9,7 +9,7 @@ namespace CategoryMovieApp.ViewComponents
         public IViewComponentResult Invoke(int id)
         {
             CommentRepository cr = new CommentRepository();
-            var commentlist = cr.List("User").Where(x=>x.MovieId == id);
+            var commentlist = cr.List("User").Where(x=>(x.MovieId == id) && (x.CommentStatu == true));
             return View(commentlist);
         }
     }

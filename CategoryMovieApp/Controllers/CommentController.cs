@@ -60,6 +60,26 @@ namespace CategoryMovieApp.Controllers
                 UserId = comment.UserId,
 
         };
+            UserRepository ur = new UserRepository();
+            MovieRepository mr = new MovieRepository();
+
+            var users = ur.List();
+            var movies = mr.List();
+
+            var userItems = users.Select(c => new SelectListItem
+            {
+                Value = c.UserId.ToString(),
+                Text = c.UserName
+            }).ToList();
+            var movieItems = movies.Select(c => new SelectListItem
+            {
+                Value = c.MovieId.ToString(),
+                Text = c.MovieNameTR
+            }).ToList();
+
+            ViewBag.Users = userItems;
+            ViewBag.Movies = movieItems;
+
             return View(c);
         }
     }

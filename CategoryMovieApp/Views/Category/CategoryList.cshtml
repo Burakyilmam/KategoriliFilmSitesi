@@ -26,9 +26,17 @@
                 <td>@item.CategoryNameTR</td>
                 <td>@item.CategoryNameEN</td>
                 <td>
-                    <a id="statu" class="@item.CategoryStatu">
-                        @item.CategoryStatu
-                    </a>
+
+                    @if (item.CategoryStatu == true)
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.CategoryStatu btn-success">
+                        </a>
+                    }
+                    else
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.CategoryStatu btn-danger">
+                        </a>
+                    }
                 </td>
                 <td>
                     <a class="btn-warning text-white" href="/Category/GetCategory/@item.CategoryId">

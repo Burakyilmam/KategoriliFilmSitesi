@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Xml.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CategoryMovieApp.Controllers
 {
@@ -163,7 +164,6 @@ namespace CategoryMovieApp.Controllers
         public ActionResult MoviePage(int id ,string ye,string ca,string co,string ln)
         {
             var film = mr.Get(id);
-
             if (film != null)
             {
                 film.MovieViewCount++;
@@ -172,7 +172,7 @@ namespace CategoryMovieApp.Controllers
             ViewBag.Id = id;
             return View(mr.List("Category","Year","Country","Language").Where(x => x.MovieId == id));
         }
-        public ActionResult MoviePageEN(int id, string ye, string ca, string co , string ln , Movie m)
+        public ActionResult MoviePageEN(int id, string ye, string ca, string co , string ln)
         {
             var film = mr.Get(id);
 
@@ -201,6 +201,7 @@ namespace CategoryMovieApp.Controllers
         public IActionResult MovieAdd(Movie m)
         {
             m.MovieAddDate = DateTime.Today;
+            m.MovieViewCount = 0;
             m.MovieStatu = true;
             mr.Add(m);
             return RedirectToAction("MovieAdminList");
@@ -249,7 +250,104 @@ namespace CategoryMovieApp.Controllers
                 MovieViewCount = movie.MovieViewCount,
                 MovieStatu = movie.MovieStatu,
             };
+            CategoryRepository cat = new CategoryRepository();
+            CountryRepository cr = new CountryRepository();
+            YearRepository yr = new YearRepository();
+            LanguageRepository lr = new LanguageRepository();
+
+            var categories = cat.List();
+            var countries = cr.List();
+            var years = yr.List();
+            var languages = lr.List();
+
+            var categoryItems = categories.Select(c => new SelectListItem
+            {
+                Value = c.CategoryId.ToString(),
+                Text = c.CategoryNameTR
+            }).ToList();
+            var countryItems = countries.Select(c => new SelectListItem
+            {
+                Value = c.CountryId.ToString(),
+                Text = c.CountryNameTR
+            }).ToList();
+            var yearItems = years.Select(c => new SelectListItem
+            {
+                Value = c.YearId.ToString(),
+                Text = c.YearName
+            }).ToList();
+            var languageItems = languages.Select(c => new SelectListItem
+            {
+                Value = c.LanguageId.ToString(),
+                Text = c.LanguageNameTR
+            }).ToList();
+
+            ViewBag.Categories = categoryItems;
+            ViewBag.Countries = countryItems;
+            ViewBag.Years = yearItems;
+            ViewBag.Languages = yearItems;
+
             return View(m);
         }
+        public IActionResult GetUpdate(int id)
+        {
+            var movie = mr.Get(id);
+            Movie m = new Movie()
+            {
+                MovieId = movie.MovieId,
+                MovieNameTR = movie.MovieNameTR,
+                MovieNameEN = movie.MovieNameEN,
+                CategoryId = movie.CategoryId,
+                CountryId = movie.CountryId,
+                MovieDescription = movie.MovieDescription,
+                MovieIMDB = movie.MovieIMDB,
+                MovieImageUrl = movie.MovieImageUrl,
+                YearId = movie.YearId,
+                MovieAddDate = movie.MovieAddDate,
+                LanguageId = movie.LanguageId,
+                MovieLength = movie.MovieLength,
+                MovieViewCount = movie.MovieViewCount,
+                MovieStatu = movie.MovieStatu,
+            };
+            CategoryRepository cat = new CategoryRepository();
+            CountryRepository cr = new CountryRepository();
+            YearRepository yr = new YearRepository();
+            LanguageRepository lr = new LanguageRepository();
+
+            var categories = cat.List();
+            var countries = cr.List();
+            var years = yr.List();
+            var languages = lr.List();
+
+            var categoryItems = categories.Select(c => new SelectListItem
+            {
+                Value = c.CategoryId.ToString(),
+                Text = c.CategoryNameTR
+            }).ToList();
+            var countryItems = countries.Select(c => new SelectListItem
+            {
+                Value = c.CountryId.ToString(),
+                Text = c.CountryNameTR
+            }).ToList();
+            var yearItems = years.Select(c => new SelectListItem
+            {
+                Value = c.YearId.ToString(),
+                Text = c.YearName
+            }).ToList();
+            var languageItems = languages.Select(c => new SelectListItem
+            {
+                Value = c.LanguageId.ToString(),
+                Text = c.LanguageNameTR
+            }).ToList();
+
+            ViewBag.Categories = categoryItems;
+            ViewBag.Countries = countryItems;
+            ViewBag.Years = yearItems;
+            ViewBag.Languages = languageItems;
+
+            return View(m);
+        }
+
+    }
     }   
-}
+
+

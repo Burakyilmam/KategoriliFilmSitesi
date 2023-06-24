@@ -1,0 +1,64 @@
+﻿@model CategoryMovieApp.Models.Movie
+@{
+    ViewData["Title"] = "GetMovie";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2 class="text-center mt-3 mb-3">Kategori Ekleme Paneli</h2>
+
+    @using (Html.BeginForm("MovieUpdate", "Movie", FormMethod.Post))
+    {
+        @Html.TextBoxFor(x=>x.MovieId,new {@style="display:none;",@class="inputName"})
+        <h2 class="text-center col-12">Adı</h2>
+        @Html.TextBoxFor(x=>x.MovieNameTR,new {@class="inputName"})
+        <h2 class="text-center col-12">İngilizce Adı</h2>
+        @Html.TextBoxFor(x=>x.MovieNameEN,new {@class="inputName"})
+        <h2 class="text-center col-12">Uzunluğu</h2>
+        @Html.TextBoxFor(x=>x.MovieLength,new {@class="inputName"})
+        <h2 class="text-center col-12">IMDB Puanı</h2>
+        @Html.TextBoxFor(x=>x.MovieIMDB,new {@class="inputName"})
+        <h2 class="text-center col-12">Kategorisi</h2>
+        @Html.DropDownListFor(model => model.CategoryId, ((IEnumerable<SelectListItem>)ViewBag.Categories).Select(c => new SelectListItem
+    {
+    Value = c.Value,
+    Text = $"{c.Value} - {c.Text}"
+    }),new {@class="inputName"})
+        <h2 class="text-center col-12">Ülkesi</h2>
+        @Html.DropDownListFor(model => model.CountryId, ((IEnumerable<SelectListItem>)ViewBag.Countries).Select(co => new SelectListItem
+    {
+    Value = co.Value,
+    Text = $"{co.Value} - {co.Text}"
+    }),new {@class="inputName"})
+        <h2 class="text-center col-12">Eklenme Tarihi</h2>
+        @Html.TextBoxFor(m => m.MovieAddDate,"{0:yyyy-MM-dd}", new { type = "date" , @class="inputName"})
+        <h2 class="text-center col-12">Dili</h2>
+        @Html.DropDownListFor(model => model.LanguageId, ((IEnumerable<SelectListItem>)ViewBag.Languages).Select(la => new SelectListItem
+    {
+    Value = la.Value,
+    Text = $"{la.Value} - {la.Text}"
+    }),new {@class="inputName"})
+        <h2 class="text-center col-12">Açıklaması</h2>
+        @Html.TextBoxFor(x=>x.MovieDescription,new {@class="inputName"})
+        <h2 class="text-center col-12">Resim Urlsi</h2>
+        @Html.TextBoxFor(x=>x.MovieImageUrl,new {@class="inputName"})
+        <h2 class="text-center col-12">Yılı</h2>
+        @Html.DropDownListFor(model => model.YearId, ((IEnumerable<SelectListItem>)ViewBag.Years).Select(ye => new SelectListItem
+    {
+    Value = ye.Value,
+    Text = $"{ye.Value} - {ye.Text}"
+    }),new {@class="inputName"})
+        <h2 class="text-center col-12">İzlenme Sayısı</h2>
+        @Html.TextBoxFor(x=>x.MovieViewCount,new {@class="inputName"})
+        <h2 class="text-center col-12">Statüsü</h2>
+        @Html.DropDownList("MovieStatu", new List<SelectListItem>
+    {
+    new SelectListItem { Value = "True", Text = "Aktif" },
+    new SelectListItem { Value = "False", Text = "Pasif" }
+    }, "-- Seçiniz --", new {@class="inputName"})
+        <div class="addBtn">
+            <button class="btn-success text-center"><i class="fa fa-plus"></i></button>
+        </div>
+    }
+</div>
+

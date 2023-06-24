@@ -10,7 +10,11 @@
     {
         @Html.TextBoxFor(x=>x.YearId,new {@style="display:none;",@class="inputName"})
         @Html.TextBoxFor(x=>x.YearName,new {@class="inputName"})
-        @Html.TextBoxFor(x=>x.YearStatu,new {@class="inputName"})
+        @Html.DropDownList("YearStatu", new List<SelectListItem>
+        {
+        new SelectListItem { Value = "True", Text = "Aktif" },
+        new SelectListItem { Value = "False", Text = "Pasif" }
+        }, "-- Seçiniz --", new {@class="inputName"})
         <br />
         <div class="addBtn">
             <button class="btn-success text-center"><i class="fa fa-plus"></i></button>

@@ -11,7 +11,11 @@
         @Html.TextBoxFor(x=>x.LanguageId,new {@style="display:none;",@class="inputName"})
         @Html.TextBoxFor(x=>x.LanguageNameTR,new {@class="inputName"})
         @Html.TextBoxFor(x=>x.LanguageNameEN,new {@class="inputName"})
-        @Html.TextBoxFor(x=>x.LanguageStatu,new {@class="inputName"})
+        @Html.DropDownList("LanguageStatu", new List<SelectListItem>
+        {
+        new SelectListItem { Value = "True", Text = "Aktif" },
+        new SelectListItem { Value = "False", Text = "Pasif" }
+        }, "-- Seçiniz --", new {@class="inputName"})
         <br />
         <div class="addBtn">
             <button class="btn-success text-center"><i class="fa fa-plus"></i></button>
