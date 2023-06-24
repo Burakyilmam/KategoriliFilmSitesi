@@ -1,9 +1,9 @@
-﻿@using CategoryMovieApp.Models
-@model IEnumerable<Country>
+﻿    @using CategoryMovieApp.Models
+    @model IEnumerable<Country>
 
-<select class="inputName" name="CountryId">
-    @foreach (var item in Model)
-    {
-        <option value="@item.CountryId">@item.CountryNameTR</option>
-    }
-</select>
+    <select class="inputName" name="CountryId">
+        @foreach (var item in Model)
+        {
+            <option value="@item.CountryId">@item.CountryNameTR</option>
+        }
+    </select>

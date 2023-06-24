@@ -1,5 +1,6 @@
 ﻿using CategoryMovieApp.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace CategoryMovieApp.ViewComponents
 {
@@ -8,7 +9,7 @@ namespace CategoryMovieApp.ViewComponents
         public IViewComponentResult Invoke()
         {
             CountryRepository cr = new CountryRepository();
-            var countrylist = cr.List().Where(x => x.CountryStatu == true).OrderBy(x => x.CountryNameTR); ;
+            var countrylist = cr.List().Where(x => x.CountryStatu == true).OrderBy(x => x.CountryNameTR);
             return View(countrylist);
         }
     }

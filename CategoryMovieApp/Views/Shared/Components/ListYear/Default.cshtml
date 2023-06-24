@@ -1,7 +1,7 @@
 ﻿@using CategoryMovieApp.Models
 @model IEnumerable<Year>
 
-<div class="row">
+<div class="row" style="max-height: 395px; overflow-y: scroll;">
     @foreach (var item in Model)
     {
         <div class="col-6 pt-2 pb-2"><a href="/Movie/GetYearMovie/@item.YearId">@item.YearName</a></div>
