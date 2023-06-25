@@ -9,6 +9,8 @@ namespace CategoryMovieApp.Models
             optionsBuilder.UseSqlServer("server=DESKTOP-EVJH8OQ;database=CategoryMovieAppDB2;integrated security=true");
         }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Actor> Actors { get; set; }
         public DbSet<Year> Years { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Country> Countries { get; set; }

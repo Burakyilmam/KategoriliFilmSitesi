@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CategoryMovieApp.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230620182100_mig4")]
-    partial class mig4
+    [Migration("20230625164326_migratin1")]
+    partial class migratin1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,62 @@ namespace CategoryMovieApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("CategoryMovieApp.Models.Actor", b =>
+                {
+                    b.Property<int>("ActorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActorId"), 1L, 1);
+
+                    b.Property<string>("ActorImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ActorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ActorStatu")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ActorTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MovieId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ActorId");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("Actors");
+                });
+
+            modelBuilder.Entity("CategoryMovieApp.Models.ActorMovie", b =>
+                {
+                    b.Property<int>("ActorMovieId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActorMovieId"), 1L, 1);
+
+                    b.Property<int>("ActorId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ActorMovieId1")
+                        .HasColumnType("int");
+
+                    b.HasKey("ActorMovieId");
+
+                    b.HasIndex("ActorId");
+
+                    b.HasIndex("ActorMovieId1");
+
+                    b.ToTable("ActorMovies");
+                });
 
             modelBuilder.Entity("CategoryMovieApp.Models.Admin", b =>
                 {
@@ -105,6 +161,37 @@ namespace CategoryMovieApp.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("CategoryMovieApp.Models.Contact", b =>
+                {
+                    b.Property<int>("ContactId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactId"), 1L, 1);
+
+                    b.Property<DateTime>("ContactDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ContactName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ContactStatu")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ContactText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ContactId");
+
+                    b.ToTable("Contacts");
+                });
+
             modelBuilder.Entity("CategoryMovieApp.Models.Country", b =>
                 {
                     b.Property<int>("CountryId")
@@ -161,6 +248,9 @@ namespace CategoryMovieApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"), 1L, 1);
 
+                    b.Property<int>("ActorId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -199,10 +289,15 @@ namespace CategoryMovieApp.Migrations
                     b.Property<bool>("MovieStatu")
                         .HasColumnType("bit");
 
+                    b.Property<int>("MovieViewCount")
+                        .HasColumnType("int");
+
                     b.Property<int>("YearId")
                         .HasColumnType("int");
 
                     b.HasKey("MovieId");
+
+                    b.HasIndex("ActorId");
 
                     b.HasIndex("CategoryId");
 
@@ -259,6 +354,28 @@ namespace CategoryMovieApp.Migrations
                     b.ToTable("Years");
                 });
 
+            modelBuilder.Entity("CategoryMovieApp.Models.Actor", b =>
+                {
+                    b.HasOne("CategoryMovieApp.Models.Movie", null)
+                        .WithMany("Actors")
+                        .HasForeignKey("MovieId");
+                });
+
+            modelBuilder.Entity("CategoryMovieApp.Models.ActorMovie", b =>
+                {
+                    b.HasOne("CategoryMovieApp.Models.Actor", "Actor")
+                        .WithMany("ActorMovies")
+                        .HasForeignKey("ActorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CategoryMovieApp.Models.ActorMovie", null)
+                        .WithMany("ActorMovies")
+                        .HasForeignKey("ActorMovieId1");
+
+                    b.Navigation("Actor");
+                });
+
             modelBuilder.Entity("CategoryMovieApp.Models.Comment", b =>
                 {
                     b.HasOne("CategoryMovieApp.Models.Movie", "Movie")
@@ -280,6 +397,12 @@ namespace CategoryMovieApp.Migrations
 
             modelBuilder.Entity("CategoryMovieApp.Models.Movie", b =>
                 {
+                    b.HasOne("CategoryMovieApp.Models.Actor", "Actor")
+                        .WithMany()
+                        .HasForeignKey("ActorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("CategoryMovieApp.Models.Category", "Category")
                         .WithMany("Movies")
                         .HasForeignKey("CategoryId")
@@ -304,6 +427,8 @@ namespace CategoryMovieApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Actor");
+
                     b.Navigation("Category");
 
                     b.Navigation("Country");
@@ -311,6 +436,16 @@ namespace CategoryMovieApp.Migrations
                     b.Navigation("Language");
 
                     b.Navigation("Year");
+                });
+
+            modelBuilder.Entity("CategoryMovieApp.Models.Actor", b =>
+                {
+                    b.Navigation("ActorMovies");
+                });
+
+            modelBuilder.Entity("CategoryMovieApp.Models.ActorMovie", b =>
+                {
+                    b.Navigation("ActorMovies");
                 });
 
             modelBuilder.Entity("CategoryMovieApp.Models.Category", b =>
@@ -330,6 +465,8 @@ namespace CategoryMovieApp.Migrations
 
             modelBuilder.Entity("CategoryMovieApp.Models.Movie", b =>
                 {
+                    b.Navigation("Actors");
+
                     b.Navigation("Comments");
                 });
 

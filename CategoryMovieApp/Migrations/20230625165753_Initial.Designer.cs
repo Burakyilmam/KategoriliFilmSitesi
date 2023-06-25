@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CategoryMovieApp.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230623172728_migratin1")]
-    partial class migratin1
+    [Migration("20230625165753_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,39 @@ namespace CategoryMovieApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("CategoryMovieApp.Models.Actor", b =>
+                {
+                    b.Property<int>("ActorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActorId"), 1L, 1);
+
+                    b.Property<string>("ActorImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ActorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ActorStatu")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ActorTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ActorId");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("Actors");
+                });
 
             modelBuilder.Entity("CategoryMovieApp.Models.Admin", b =>
                 {
@@ -103,6 +136,37 @@ namespace CategoryMovieApp.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("CategoryMovieApp.Models.Contact", b =>
+                {
+                    b.Property<int>("ContactId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactId"), 1L, 1);
+
+                    b.Property<DateTime>("ContactDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ContactName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ContactStatu")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ContactText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ContactId");
+
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("CategoryMovieApp.Models.Country", b =>
@@ -262,6 +326,17 @@ namespace CategoryMovieApp.Migrations
                     b.ToTable("Years");
                 });
 
+            modelBuilder.Entity("CategoryMovieApp.Models.Actor", b =>
+                {
+                    b.HasOne("CategoryMovieApp.Models.Movie", "Movie")
+                        .WithMany("Actors")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
+                });
+
             modelBuilder.Entity("CategoryMovieApp.Models.Comment", b =>
                 {
                     b.HasOne("CategoryMovieApp.Models.Movie", "Movie")
@@ -333,6 +408,8 @@ namespace CategoryMovieApp.Migrations
 
             modelBuilder.Entity("CategoryMovieApp.Models.Movie", b =>
                 {
+                    b.Navigation("Actors");
+
                     b.Navigation("Comments");
                 });
 

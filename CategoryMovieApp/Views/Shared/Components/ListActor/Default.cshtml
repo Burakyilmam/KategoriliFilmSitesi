@@ -1,0 +1,18 @@
+﻿@using CategoryMovieApp.Models
+@model IEnumerable<Actor>
+
+<link href="~/css/badge.css" rel="stylesheet" />
+<link href="~/css/slider.css" rel="stylesheet" />
+<link href="~/css/flickity.css" rel="stylesheet" />
+<script src="~/js/flickity.pkgd.min.js"></script>
+<h2 class="text-center">Oyuncular</h2>
+    <div class="carousel pt-2 pb-4" data-flickity='{}'>
+@foreach (var item in Model)
+{
+    <div class="carousel-cell">
+        <a><img width="100%" height="400px" src="@item.ActorImageUrl" alt="Alternate Text" /></a>
+    </div>
+}
+   </div>
+
+ 

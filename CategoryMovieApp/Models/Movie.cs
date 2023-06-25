@@ -16,8 +16,9 @@ namespace CategoryMovieApp.Models
         public string MovieLength { get; set; }
         public DateTime MovieAddDate { get; set; }
         public bool MovieStatu { get; set; }
-        public int CategoryId { get; set; }
         public List<Comment> Comments { get; set; }
+        public List<Actor> Actors { get; set; }
+        public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
         public int YearId { get; set; }
         public virtual Year Year { get; set; }

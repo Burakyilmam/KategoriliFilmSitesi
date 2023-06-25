@@ -48,7 +48,7 @@
                 </div>
                 </div>
                 <div class="col-12 mt-2 mb-2">
-                    Oyuncular Alanı
+                @await Component.InvokeAsync("ListActor",new {id=ViewBag.Id})
                 </div>
         </div>
     </div>

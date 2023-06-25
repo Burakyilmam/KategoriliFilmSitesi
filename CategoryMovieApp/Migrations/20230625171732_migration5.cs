@@ -4,7 +4,7 @@
 
 namespace CategoryMovieApp.Migrations
 {
-    public partial class mig3 : Migration
+    public partial class migration5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
