@@ -18,9 +18,6 @@
     text-align: center;
     font-weight: bolder;
 }
-@media screen and (min-width :576px) and (max-width :768px){
-
-}
 .social {
     display: flex;
     justify-content: center;

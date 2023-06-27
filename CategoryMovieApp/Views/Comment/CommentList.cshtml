@@ -62,6 +62,6 @@
         }
     </table>
     <div class="row justify-content-center">
-        @Html.PagedListPager((IPagedList)Model,page=>Url.Action("CommentyList",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+        @Html.PagedListPager((IPagedList)Model,page=>Url.Action("CommentList",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
     </div>
 </div>

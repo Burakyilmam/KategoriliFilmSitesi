@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CategoryMovieApp.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230625170132_migration4")]
-    partial class migration4
+    [Migration("20230627113341_migration2")]
+    partial class migration2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

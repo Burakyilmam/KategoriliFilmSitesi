@@ -5,12 +5,14 @@
 <link href="~/css/slider.css" rel="stylesheet" />
 <link href="~/css/flickity.css" rel="stylesheet" />
 <script src="~/js/flickity.pkgd.min.js"></script>
-<h2 class="text-center">Oyuncular</h2>
-    <div class="carousel pt-2 pb-4" data-flickity='{}'>
+<h2 class="text-center">Film Ekibi</h2>
+<div class="carousel pt-2 pb-4" data-flickity='{"pageDots": false}'>
 @foreach (var item in Model)
 {
-    <div class="carousel-cell">
-        <a><img width="100%" height="400px" src="@item.ActorImageUrl" alt="Alternate Text" /></a>
+    <div class="carousel-cell text-center">
+        <div style="border-top-left-radius:10px;border-top-right-radius:10px" class="col-12 bg-primary text-white">@item.ActorTitle</div>
+        <a><img width="100%" height="250px" src="@item.ActorImageUrl" alt="Alternate Text" /></a>
+        <div style="border-bottom-left-radius:10px;border-bottom-right-radius:10px" class="col-12 bg-info text-white">@item.ActorName</div>
     </div>
 }
    </div>

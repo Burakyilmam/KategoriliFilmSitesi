@@ -1,0 +1,61 @@
+﻿@using CategoryMovieApp.Models
+@using X.PagedList.Mvc.Bootstrap4.Core;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@model PagedList<Contact>
+@{
+    ViewData["Title"] = "ContactList";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+<div class="container-fluid">
+    <h2 class="text-center mt-3 mb-3">İletişim Bilgileri</h2>
+    <table class="table table-hover table-striped table-bordered text-center">
+        <tr>
+            <th class="cid">Id</th>
+            <th class="ctr">Ad</th>
+            <th class="ctr">Telefon Numara</th>
+            <th class="ctr">Yazı</th>
+            <th class="cen">Eklenme Tarihi</th>
+            <th class="cst">Statü</th>
+            <th class="cup">Güncelle</th>
+            <th class="cdel">Sil</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ContactId</td>
+                <td>@item.ContactName</td>
+                <td>@item.ContactPhone</td>
+                <td>@item.ContactText</td>
+                <td>@item.ContactDate.ToString("dd MMMM yyyy")</td>
+                <td>
+
+                    @if (item.ContactStatu == true)
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.ContactStatu btn-success">
+                        </a>
+                    }
+                    else
+                    {
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.ContactStatu btn-danger">
+                        </a>
+                    }
+                </td>
+                <td>
+                    <a class="btn-warning text-white" href="/Contact/GetContact/@item.ContactId">
+                        <i class="fa fa-refresh"></i>
+                    </a>
+                </td>
+                <td>
+                    <a class="btn-primary" href="/Contact/ContactDelete/@item.ContactId">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="row justify-content-center">
+        @Html.PagedListPager((IPagedList)Model,page=>Url.Action("ContactList",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+    </div>
+</div>
