@@ -1,0 +1,85 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Bootstrap4.Core;
+@using X.PagedList.Mvc.Core
+@using CategoryMovieApp.Models
+@model IPagedList<Movie>
+@{
+    ViewData["Title"] = "MovieList";
+    Layout = "~/Views/Shared/_LayoutTR.cshtml";
+}
+<link href="~/css/badge.css" rel="stylesheet" />
+<link href="~/css/slider.css" rel="stylesheet" />
+<link href="~/css/flickity.css" rel="stylesheet" />
+<script src="~/js/flickity.pkgd.min.js"></script>
+<div class="container-fluid">
+    <div class="carousel pt-2 pb-4" data-flickity='{ "autoPlay": 2000, "pauseAutoPlayOnHover": false }'>
+        @await Component.InvokeAsync("ListSlider")
+    </div>
+    <div class="row">
+        <div class="col-sm Movies">
+            <div class="row">
+                <div class="Filter">
+                    <ul>
+                        <a href="/Movie/NewAddedNoComment">
+                        <li>Yeni Eklenenler</li>
+                        </a>
+                        <a href="/Movie/MostLike">
+                        <li>Çok Beğenilen</li>
+                        </a>
+                        <a href="/Movie/MostCommentNoComment">
+                        <li>Çok Yorumlanan</li>
+                        </a>
+                        <a href="/Movie/MostViewNoComment">
+                        <li>Çok İzlenen</li>
+                        </a>
+                        <a href="/Movie/IMDB7NoComment">
+                        <li>IMDB 7+</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="row MovieArea">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-6 col-md-4 col-lg-3 item">
+                        <span class="BadgeIMDB">@item.MovieIMDB</span>
+                        <span class="BadgeLanguage @item.Language.LanguageNameTR"><a href="/Movie/GetLanguage/@item.LanguageId">@item.Language.LanguageNameTR</a></span>
+                        <a href="/Movie/MoviePageNoComment/@item.MovieId">
+                            <img src="@item.MovieImageUrl" alt="">
+                        </a>
+                        <div class="row Info">
+                            <div class="col-4 Year"><a href="/Movie/GetYearMovie/@item.YearId">@item.Year.YearName</a></div>
+                            <div class="col-4 View"><a><i class="fa fa-eye"> @item.MovieViewCount</i></a></div>
+                            <div class="col-4 Category"><a href="/Movie/GetCategory/Movie/@item.CategoryId">@item.Category.CategoryNameTR</a></div>
+                            <div class="col-12 Text"><a href="Movie/MoviePageNoComment/@item.MovieId">@item.MovieNameTR</a></div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row mt-3 mb-3 justify-content-center">
+                @Html.PagedListPager((IPagedList)Model,page=>Url.Action("MovieListNoComment",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-12 text-center Categories">
+                    <h5 class="mt-2">Kategoriler</h5>
+                    @await Component.InvokeAsync("ListCategoryNoComment")
+                </div>
+                <div class="col-12 Years text-center">
+                    <h5 class="mt-2">Yıllar</h5>
+                    @await Component.InvokeAsync("ListYearNoComment")
+                </div>
+                <div class="col-12 Country text-center">
+                    <h5 class="mt-2">Ülkeler</h5>
+                    @await Component.InvokeAsync("ListCountryNoComment")
+                </div>
+                <div class="col-12 Country text-center">
+                    <h5 class="mt-2">Diller</h5>
+                    @await Component.InvokeAsync("ListLanguageNoComment")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

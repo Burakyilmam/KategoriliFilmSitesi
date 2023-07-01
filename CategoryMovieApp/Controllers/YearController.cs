@@ -1,10 +1,12 @@
 ﻿using CategoryMovieApp.Models;
 using CategoryMovieApp.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
 namespace CategoryMovieApp.Controllers
 {
+    [Authorize]
     public class YearController : Controller
     {
         YearRepository yr = new YearRepository();

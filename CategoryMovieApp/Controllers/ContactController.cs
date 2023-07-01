@@ -1,13 +1,16 @@
 ﻿using CategoryMovieApp.Models;
 using CategoryMovieApp.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
 namespace CategoryMovieApp.Controllers
 {
+    [Authorize]
     public class ContactController : Controller
     {
         ContactRepository cr = new ContactRepository();
+        [AllowAnonymous]
         public IActionResult Contact()
         {
             return View();
@@ -16,12 +19,14 @@ namespace CategoryMovieApp.Controllers
         {
             return View(cr.List().Where(x => x.ContactDate <= DateTime.Now).OrderBy(x => x.ContactId).ToPagedList(page, 12));
         }
+        [AllowAnonymous]
         public PartialViewResult ContactAdd(int id)
         {
             ViewBag.Id = id;
             return PartialView();
         }
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult ContactAdd(Contact c)
         {   ContactRepository cr = new ContactRepository();
             c.ContactDate = DateTime.Today;

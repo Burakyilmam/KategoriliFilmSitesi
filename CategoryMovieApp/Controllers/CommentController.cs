@@ -1,12 +1,15 @@
 ﻿using CategoryMovieApp.Models;
 using CategoryMovieApp.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 using X.PagedList;
 
 namespace CategoryMovieApp.Controllers
 {
+    [Authorize]
     public class CommentController : Controller
     {
         CommentRepository cr = new CommentRepository();
@@ -25,7 +28,12 @@ namespace CategoryMovieApp.Controllers
         {
             c.CommentDate = DateTime.Today;
             c.CommentStatu = true;
-            c.UserId = 1;
+            var userIdClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (!string.IsNullOrEmpty(userIdClaim))
+            {
+                int userId = int.Parse(userIdClaim);
+                c.UserId = userId;
+            }
             cr.Add(c);
             return RedirectToAction("MoviePage", "Movie", new { @id = c.MovieId });
 

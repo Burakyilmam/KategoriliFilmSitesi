@@ -2,17 +2,17 @@
 @using X.PagedList.Mvc.Bootstrap4.Core;
 @using X.PagedList;
 @using X.PagedList.Mvc.Core;
-@model PagedList<User>
+@model PagedList<Admin>
 @{
     ViewData["Title"] = "UserList";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
 <div class="container-fluid">
-    <h2 class="text-center mt-3 mb-3">Kullanıcı Bilgileri</h2>
+    <h2 class="text-center mt-3 mb-3">Yönetici Bilgileri</h2>
     <table class="table table-hover table-striped table-bordered text-center">
         <tr>
             <th class="cid">Id</th>
-            <th class="ctr">Kullanıcı Ad</th>
+            <th class="ctr">Yönetici Ad</th>
             <th class="cen">Parola</th>
             <th class="cst">Statü</th>
             <th class="cup">Güncelle</th>
@@ -22,29 +22,29 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.UserId</td>
-                <td>@item.UserName</td>
-                <td>@item.UserPassword</td>
+                <td>@item.AdminId</td>
+                <td>@item.AdminName</td>
+                <td>@item.AdminPassword</td>
                 <td>
 
-                    @if (item.UserStatu == true)
+                    @if (item.AdminStatu == true)
                     {
-                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.UserStatu btn-success">
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.AdminStatu btn-success">
                         </a>
                     }
                     else
                     {
-                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.UserStatu btn-danger">
+                        <a id="statu" style="padding:2px 12px;border-radius:80%" class="@item.AdminStatu btn-danger">
                         </a>
                     }
                 </td>
                 <td>
-                    <a class="btn-warning text-white" href="/User/GetUser/@item.UserId">
+                    <a class="btn-warning text-white" href="/Admin/GetAdmin/@item.AdminId">
                         <i class="fa fa-refresh"></i>
                     </a>
                 </td>
                 <td>
-                    <a class="btn-primary" href="/User/UserDelete/@item.UserId">
+                    <a class="btn-primary" href="/Admin/AdminDelete/@item.AdminId">
                         <i class="fa fa-trash"></i>
                     </a>
                 </td>
@@ -52,10 +52,10 @@
         }
     </table>
     <div class="row justify-content-center">
-        @Html.PagedListPager((IPagedList)Model,page=>Url.Action("UserList",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+        @Html.PagedListPager((IPagedList)Model,page=>Url.Action("AdminList",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
     </div>
     <div class="text-center">
-        <a class="btn-success" href="/Login/Register/">
+        <a class="btn-success" href="/Admin/Register/">
             <i class="fa fa-plus"></i>
         </a>
     </div>

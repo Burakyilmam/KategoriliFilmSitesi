@@ -1,0 +1,25 @@
+﻿@model CategoryMovieApp.Models.Admin
+@{
+    ViewData["Title"] = "GetAdmin";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2 class="text-center mt-3 mb-3">Admin Paneli</h2>
+    @using (Html.BeginForm("AdminUpdate", "Admin", FormMethod.Post))
+    {
+        @Html.TextBoxFor(x=>x.AdminId,new {@style="display:none;",@class="inputName"})
+        @Html.TextBoxFor(x=>x.AdminName,new {@class="inputName"})
+        @Html.TextBoxFor(x=>x.AdminPassword,new {@class="inputName"})
+        @Html.DropDownList("AdminStatu", new List<SelectListItem>
+    {
+    new SelectListItem { Value = "True", Text = "Aktif" },
+    new SelectListItem { Value = "False", Text = "Pasif" }
+    }, "-- Seçiniz --", new {@class="inputName"})
+        <br />
+        <div class="addBtn">
+            <button class="btn-success text-center"><i class="fa fa-plus"></i></button>
+        </div>
+    }
+</div>
+

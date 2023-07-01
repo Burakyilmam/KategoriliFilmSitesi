@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+
 namespace CategoryMovieApp
 {
     public class Program
@@ -8,7 +12,17 @@ namespace CategoryMovieApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            builder.Services.AddMvc();
+            builder.Services.AddSession();
+            builder.Services.AddAuthentication(
+                CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x=>
+                {
+                    x.LoginPath = "/Login/Login/";
+                });
+            builder.Services.AddMvc(config=>
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
 
             var app = builder.Build();
 
@@ -25,6 +39,8 @@ namespace CategoryMovieApp
 
             app.UseRouting();
 
+            app.UseSession();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
