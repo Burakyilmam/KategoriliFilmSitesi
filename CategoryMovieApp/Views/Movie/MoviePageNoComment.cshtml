@@ -54,6 +54,14 @@
     </div>
 }
 @await Component.InvokeAsync("ListComment",new {id=ViewBag.Id})
-<a href="/Movie/MovieList/">Yorum yapabilmek için giriş yapın.</a>
-
-
+<div class="col-12">
+    <p class="bg-secondary text-white p-3" style="border-radius:10px;">
+        Sadece kayıtlı üyeler yorum yapabilir.Yorum Yapabilmeniz için üye girişi yapmanız gerekmektedir.Eğer üye değilseniz yan tarafta bulunan kayıt ol butonu ile üye olabilirsiniz.
+        <a class="btn-light m-2" style="padding:10px;border-radius:10px" href="/Movie/MovieList/">
+            Giriş Yap
+        </a>
+        <a class="btn-danger" style="padding:10px;border-radius:10px" href="/Login/Register/">
+            Üye Ol
+        </a>
+    </p>
+</div>
